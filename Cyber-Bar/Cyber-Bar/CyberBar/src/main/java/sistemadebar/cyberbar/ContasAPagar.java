@@ -9,11 +9,12 @@ import java.util.Scanner;
 
 /**
  *
- * @author aluno
+ * @author Lucas Pessoli
  */
 public class ContasAPagar {
     private double saldo;
     private int idConta;
+    private ArrayList<Conta> contas;
     public Date DataDaConta;
     public Date vencimentoDaConta;
     public String formaPagamento;
@@ -25,14 +26,39 @@ public class ContasAPagar {
     public double totalAPagar;
     public int parcela;
     
-    Scanner scn = new Scanner(System.in);
-    
-    public void setValorConta(double valorConta){
-        this.valorConta = valorConta;
+    public ContasAPagar(){
+        contas = new ArrayList<Conta>();
     }
     
-    public double getValorConta(){
-        return this.valorConta;
+//RASCUNHO        public void adicionarConta(String nomeConta, String empresaConta, double valorConta){
+
+    public void adicionarConta(){
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Informe o nome/descrição da sua conta: ");
+        String nomee = scn.nextLine();
+        System.out.println("Informe o nome da empresa da qual sua conta se origina: ");
+        String empresaa = scn.nextLine();
+        System.out.println("Informe o valor da sua conta: ");
+        Double valor = scn.nextDouble();
+        if (nomee == null){
+            System.out.println("Você precisa informar o nome/descricao da sua conta.");
+        }else if(empresaa == null){
+            System.out.println("Você precisa informar o nome da empresa da qual a conta se origina.");
+        }else{
+            contas.add(new Conta(nomee, empresaa, valor));
+        }
+    }
+    
+    //Fazer debitar saldo, remover a conta da lista e fazer validação
+    public void PagarConta(int in){
+        contas.remove(in);
+    }
+    
+    public void listarContas(){
+        for (int i = 0; i <contas.size();i++){
+            Conta conta = contas.get(i);
+            System.out.println("Conta número: "+i+" - Nome da conta: " + conta.getNomeConta() + "\nEmpresa originadora da conta: " + conta.getEmpresaConta() + "\nvalor da conta: " + conta.getValorConta()+"\n");
+        }
     }
     
     public void setSaldo(double saldo){
@@ -51,36 +77,44 @@ public class ContasAPagar {
         return this.idConta;
     }
     
-    public void AdicionaSaldo(){
-        System.out.println("Digite a quantia que você quer adicionar de saldo: ");
-        int saldoadd = scn.nextInt();
-        System.out.println("Qual forma de pagamento você escolherá\n 1 - PIX\n 2 - Cartão de crédito/débito \n 3 - Boleto bancário\n 4 - Recarga");
-        char metodoEscolha = scn.next().charAt(0);
-        switch (metodoEscolha){
-            case '1':
-                System.out.println("Você escolheu:  PIX!");
-                String escolhaPix = "PIX";
-                break;
-            case '2':
-                System.out.println("Você escolheu: Cartão de crédito/débito!");
-                String escolhaCartao = "Cartão de crédito/débito";
-                break;
-            case '3':
-                System.out.println("Você escolheu: Boleto Bancário!");
-                String escolhaBoleto = "Boleto bancário";
-                break;
-            case '4':
-                System.out.println("Você escolheu: Recarga!");
-                String escolhaRecarga = "Recarga";
-                break;
-        }
-        System.out.println("Você escolheu: ");
-        
+    public ContasAPagar(int idConta, double valorConta, String nomeConta){
+        this.idConta = idConta;
+        this.valorConta = valorConta;
+        this.nomeConta = nomeConta;
     }
     
-    public void Pagar(int idConta, String nomeConta, double valorConta){
+    public void Pagar(String nomeConta, int idConta, double valorConta){
         this.saldo = (getSaldo() - valorConta);
-        System.out.println("Conta:"+nomeConta+" foi paga com sucesso! "+"\nNovo saldo: " + saldo);
+        System.out.println("Novo saldo: " + saldo);
+        System.out.println("");
+    }
+    
+    private class Conta{
+        private int idConta;
+        private String nomeConta;
+        private Date DataDaConta;
+        private Date vencimentoDaConta;
+        private String empresaConta;
+        private double valorConta;
+        private int quantConta;
+        
+        public Conta(String nomeConta, String empresaConta, double valorConta){
+            this.nomeConta = nomeConta;
+            this.empresaConta = empresaConta;
+            this.valorConta = valorConta;
+        }
+        
+        public String getNomeConta(){
+            return nomeConta;
+        }
+        
+        public double getValorConta(){
+            return valorConta;
+        }
+        
+        public String getEmpresaConta(){
+            return empresaConta;
+        }
     }
     
 }
