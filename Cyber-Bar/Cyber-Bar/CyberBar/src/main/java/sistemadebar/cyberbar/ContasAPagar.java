@@ -2,18 +2,19 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package com.mycompany.ciber;
-
-import java.util.ArrayList;
+package com.mycompany.caceta;
 import java.util.Date;
+import java.util.ArrayList;
 import java.util.Scanner;
+import javax.swing.text.Position;
+
 
 /**
  *
- * @author aluno
+ * @author Lucas Pessoli
  */
 public class ContasAPagar {
-        private double saldo;
+    private double saldo;
     private int idConta;
     private ArrayList<Conta> contas;
     public Date DataDaConta;
@@ -68,6 +69,49 @@ public class ContasAPagar {
             Conta conta = contas.get(i);
             System.out.println("Conta número: "+i+" - Nome da conta: " + conta.getNomeConta() + "\nEmpresa originadora da conta: " + conta.getEmpresaConta() + "\nvalor da conta: " + conta.getValorConta()+"\n");
         }
+    }
+    
+    public void ProcurarPorConta(){
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Você deseja procurar sua conta por:\n1 - Código\n2 - Nome\n");
+        String escolha = scn.nextLine();
+        System.out.println("Informe o código da sua conta: ");
+        int escolhaC = scn.nextInt();
+        Conta conta = contas.get(escolhaC);
+        System.out.println("Conta número: "+escolhaC+" - Nome da conta: " + conta.getNomeConta() + "\nEmpresa originadora da conta: " + conta.getEmpresaConta() + "\nvalor da conta: " + conta.getValorConta()+"\n");
+    }
+    
+    public void AdicionarSaldo(){
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Escolha a  sua forma de pagamento:\n1 - PIX\n2 - Cartão de crédito/débito\n3 - Boleto Bancário\n4 - Recarga\n");
+        String choice = scn.nextLine();
+        try{
+            switch (choice){
+                case "1":
+                    System.out.println("Você escolheu o Pagamento PIX!");
+                    break;
+                case "2":
+                    System.out.println("Você escolheu pagar por cartão de crédito/débito");
+                    break;
+                case "3":
+                    System.out.println("Você escolheu pagar por boleto bancário");
+                    break;
+                case "4":
+                    System.out.println("Você escolheu pagar por recarga");
+                    break;
+                default:
+                    System.out.println("Você precisa escolher um número válido listado acima!");
+        }    
+        }catch(Exception e){
+            System.out.println("Um erro inesperado aconteceu, tente novamente.");
+        }
+            System.out.println("Informe a quantia do depósito: ");
+            double quantia = scn.nextDouble();
+            if (quantia > 0){
+                setSaldo(quantia);
+            }else{
+                System.out.println("Você precisa informar um valor maior que 0");
+            }
     }
     
     public void setSaldo(double saldo){
