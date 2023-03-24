@@ -2,17 +2,18 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package sistemadebar.cyberbar;
+package com.mycompany.ciber;
+
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Scanner;
 
-
 /**
  *
- * @author Lucas Pessoli
+ * @author aluno
  */
 public class ContasAPagar {
-    private double saldo;
+        private double saldo;
     private int idConta;
     private ArrayList<Conta> contas;
     public Date DataDaConta;
@@ -49,9 +50,17 @@ public class ContasAPagar {
         }
     }
     
-    //Fazer debitar saldo, remover a conta da lista e fazer validação
-    public void PagarConta(int in){
-        contas.remove(in);
+    public void PagarConta(){
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Informe o número da conta que você deseja pagar: ");
+        int contaSelecionada = scn.nextInt();
+        if (saldo >= contas.get(idConta).getValorConta()){
+            saldo = (saldo - contas.get(contaSelecionada).getValorConta());
+            System.out.println("Parabéns, você pagou a conta: "+ contas.get(contaSelecionada).getNomeConta()+ " da empresa: "+ contas.get(contaSelecionada).getEmpresaConta()+ " do valor: "+ contas.get(contaSelecionada).getValorConta() + "com sucesso! Seu novo saldo: " + saldo);
+            contas.remove(contaSelecionada);
+        }else{
+            System.out.println("Você não tem dinheiro o suficiente!");
+        }
     }
     
     public void listarContas(){
@@ -77,17 +86,11 @@ public class ContasAPagar {
         return this.idConta;
     }
     
-    public ContasAPagar(int idConta, double valorConta, String nomeConta){
-        this.idConta = idConta;
-        this.valorConta = valorConta;
-        this.nomeConta = nomeConta;
-    }
-    
-    public void Pagar(String nomeConta, int idConta, double valorConta){
-        this.saldo = (getSaldo() - valorConta);
-        System.out.println("Novo saldo: " + saldo);
-        System.out.println("");
-    }
+//    public ContasAPagar(int idConta, double valorConta, String nomeConta){
+ //       this.idConta = idConta;
+ //       this.valorConta = valorConta;
+ //       this.nomeConta = nomeConta;
+ //   }
     
     private class Conta{
         private int idConta;
