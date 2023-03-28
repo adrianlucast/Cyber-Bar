@@ -5,7 +5,8 @@ import java.util.Scanner;
 
 /**
  *
- * @author Lucas Pessoli
+ * @Análista: Lucas Pessoli
+ * @Desenvolvedor: Vinicius Sempkoski
  */
 public class ContasAPagar {
     private double saldo;
