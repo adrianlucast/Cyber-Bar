@@ -1,13 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
-package com.mycompany.caceta;
+package com.mycompany.cyberbaar;
 import java.util.Date;
 import java.util.ArrayList;
 import java.util.Scanner;
-import javax.swing.text.Position;
-
 
 /**
  *
@@ -33,7 +27,7 @@ public class ContasAPagar {
     }
     
 //RASCUNHO        public void adicionarConta(String nomeConta, String empresaConta, double valorConta){
-
+    
     public void adicionarConta(){
         Scanner scn = new Scanner(System.in);
         System.out.println("Informe o nome/descrição da sua conta: ");
@@ -74,7 +68,6 @@ public class ContasAPagar {
     public void ProcurarPorConta(){
         Scanner scn = new Scanner(System.in);
         System.out.println("Você deseja procurar sua conta por:\n1 - Código\n2 - Nome\n");
-        String escolha = scn.nextLine();
         System.out.println("Informe o código da sua conta: ");
         int escolhaC = scn.nextInt();
         Conta conta = contas.get(escolhaC);
@@ -87,20 +80,11 @@ public class ContasAPagar {
         String choice = scn.nextLine();
         try{
             switch (choice){
-                case "1":
-                    System.out.println("Você escolheu o Pagamento PIX!");
-                    break;
-                case "2":
-                    System.out.println("Você escolheu pagar por cartão de crédito/débito");
-                    break;
-                case "3":
-                    System.out.println("Você escolheu pagar por boleto bancário");
-                    break;
-                case "4":
-                    System.out.println("Você escolheu pagar por recarga");
-                    break;
-                default:
-                    System.out.println("Você precisa escolher um número válido listado acima!");
+                case "1" -> System.out.println("Você escolheu o Pagamento PIX!");
+                case "2" -> System.out.println("Você escolheu pagar por cartão de crédito/débito");
+                case "3" -> System.out.println("Você escolheu pagar por boleto bancário");
+                case "4" -> System.out.println("Você escolheu pagar por recarga");
+                default -> System.out.println("Você precisa escolher um número válido listado acima!");
         }    
         }catch(Exception e){
             System.out.println("Um erro inesperado aconteceu, tente novamente.");
@@ -112,7 +96,8 @@ public class ContasAPagar {
             }else{
                 System.out.println("Você precisa informar um valor maior que 0");
             }
-    }
+    }    
+    
     
     public void setSaldo(double saldo){
         this.saldo = saldo;
@@ -130,20 +115,11 @@ public class ContasAPagar {
         return this.idConta;
     }
     
-//    public ContasAPagar(int idConta, double valorConta, String nomeConta){
- //       this.idConta = idConta;
- //       this.valorConta = valorConta;
- //       this.nomeConta = nomeConta;
- //   }
-    
     private class Conta{
-        private int idConta;
         private String nomeConta;
-        private Date DataDaConta;
-        private Date vencimentoDaConta;
         private String empresaConta;
         private double valorConta;
-        private int quantConta;
+        private int idConta;
         
         public Conta(String nomeConta, String empresaConta, double valorConta){
             this.nomeConta = nomeConta;
@@ -154,6 +130,14 @@ public class ContasAPagar {
         public String getNomeConta(){
             return nomeConta;
         }
+
+        public int getIdConta() {
+            return idConta;
+        }
+
+        public void setIdConta(int idConta) {
+            this.idConta = idConta;
+        }
         
         public double getValorConta(){
             return valorConta;
@@ -162,6 +146,7 @@ public class ContasAPagar {
         public String getEmpresaConta(){
             return empresaConta;
         }
+        
     }
     
 }
