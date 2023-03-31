@@ -1,4 +1,4 @@
-package com.sistema.cyberbar;
+package sistemadebar.cyberbar;
 
 import java.util.Scanner;
 import java.util.Date;
@@ -17,15 +17,16 @@ public class Vendas {
     private String descricaoVenda;
     private ArrayList<Compra> compras;
     private String nomeProduto;
+    private int parcela;
+    private int parcelasRestantes;
     public String formaPagamento;
     public double valorTotal;
     public Date dateVenda;
     
-        public Vendas(){
+    public Vendas(){
         compras = new ArrayList<Compra>();
     }
     
-        
         
     public void RegistrarVenda(){
         Scanner scn = new Scanner(System.in);
@@ -58,21 +59,28 @@ public class Vendas {
             System.exit(0);
         }
         System.out.println(formaPagamento);
-        System.out.println("Informe o nome do cliente: ");
+        System.out.println("#Informe o nome do cliente: ");
         String nomeDoCliente = scn.nextLine();
-        System.out.println("Insira o CPF do cliente (vazio para não emitir cpf na nota)");
+        System.out.println("#Insira o CPF do cliente (vazio para não emitir cpf na nota)");
         String cpfDoCliente = scn.nextLine();
         if(cpfDoCliente.equals("")|| cpfDoCliente.equals(null) || cpfDoCliente.equals(" ")){
             cpfDoCliente = "Não exibido por prefêrencia do cliente.";
         }
-        System.out.println("Informe a descrição da venda: ");
+        System.out.println("#Informe a descrição da venda: ");
         String descVenda = scn.nextLine();
-        System.out.println("Nome do produto comprado: ");
+        System.out.println("#Nome do(s) produto(s) comprado(s): ");
         String nomeDoProduto = scn.nextLine();
+        System.out.println("*Valor do produto comprado: ");
+        int valorProduto = scn.nextInt();
+        System.out.println("*Parcelar em: (limite: 12 parcelas, caso for á vista deixar vazio) ");
+        int parcela = scn.nextInt();
+        if (parcela > 12 ){
+            parcela = 12;
+        }
         Date data = new Date();
         Date datt = data;
         String dataVenda = datt.toString();
-        compras.add(new Compra(proximoId, cpfDoCliente,nomeDoCliente, descVenda, nomeDoProduto, formaPagamento, dataVenda));
+        compras.add(new Compra(proximoId, cpfDoCliente,nomeDoCliente, descVenda, nomeDoProduto,parcela,valorProduto, formaPagamento, dataVenda));
         System.out.println("Conta registrada com sucesso! ID da conta: " + proximoId);
         proximoId++;
     }
@@ -90,7 +98,9 @@ public class Vendas {
                     System.out.println("CPF: " + compra.getCpfCliente());
                     System.out.println("Nome do cliente: " + compra.getNomeProduto());
                     System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
-                    System.out.println("Nome do produto:" + compra.getNomeProduto());
+                    System.out.println("Nome do(s) produto(s):" + compra.getNomeProduto());
+                    System.out.println("Valor do produto: " + compra.getValorProduto());
+                    System.out.println("Parcelas restantes do produto: " + compra.getParcela());
                     System.out.println("Forma de pagamento utilizada: " + compra.getFormaPagamento());
                     System.out.println("Data da venda: " + compra.getDateVenda());
             }
@@ -105,7 +115,9 @@ public class Vendas {
                             System.out.println("CPF: " + compra.getCpfCliente());
                             System.out.println("Nome do cliente: " + compra.getNomeProduto());
                             System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
-                            System.out.println("Nome do produto:" + compra.getNomeProduto());
+                            System.out.println("Nome do(s) produto(s):" + compra.getNomeProduto());
+                            System.out.println("Valor do produto: " + compra.getValorProduto());
+                            System.out.println("Parcelas restantes do produto: " + compra.getParcela());
                             System.out.println("Forma de pagamento utilizada: " + compra.getFormaPagamento());
                             System.out.println("Data da venda: " + compra.getDateVenda());
                         }
@@ -130,7 +142,9 @@ public class Vendas {
                     System.out.println("CPF: " + compra.getCpfCliente());
                     System.out.println("Nome do cliente: " + compra.getNomeProduto());
                     System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
-                    System.out.println("Nome do produto:" + compra.getNomeProduto());
+                    System.out.println("Nome do(s) produto(s):" + compra.getNomeProduto());
+                    System.out.println("Valor do produto: " + compra.getValorProduto());
+                    System.out.println("Parcelas restantes do produto: " + compra.getParcela());
                     System.out.println("Forma de pagamento utilizada: " + compra.getFormaPagamento());
                     System.out.println("Data da venda: " + compra.getDateVenda());
                     System.out.println("===========================");
@@ -150,6 +164,42 @@ public class Vendas {
                 System.out.println("Conta não encontrada!");
             }
     }
+    public void BaixaParcela(){
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Informe o ID da compra/venda para baixar a parcela: ");
+        int id = scn.nextInt();
+        boolean encontrado = false;
+            for(Compra compra : compras){
+                if (compra.getIdCompra() == id){
+                    encontrado = true;
+                    System.out.println("Conta encontrada! Informações abaixo:");
+                    System.out.println("CPF: " + compra.getCpfCliente());
+                    System.out.println("Nome do cliente: " + compra.getNomeProduto());
+                    System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
+                    System.out.println("Nome do(s) produto(s):" + compra.getNomeProduto());
+                    System.out.println("Valor do produto: " + compra.getValorProduto());
+                    System.out.println("Parcelas restantes do produto: " + compra.getParcela());
+                    System.out.println("Informe Quantas parcelas você deseja baixar: ");
+                    int res = scn.nextInt();
+                    if(res < 0 ){
+                        res = 0;
+                    }
+                    if(res <= compra.getParcela()){
+                        int parcelaSalva = compra.getParcela();
+                        compra.setParcela(compra.getParcela() - res);
+                        if(compra.getParcela() <=0){
+                            System.out.println("Todas as parcelas foram baixadas! Saindo por um total de: " + ((compra.getValorProduto() / res) * res) + "");
+                        }else{
+                            System.out.println("Parcela(s) baixada(s)! Parcelas atuais: " + compra.getParcela() + ", você terá que pagar: " + ((compra.getValorProduto() / parcelaSalva) * res));
+                        }
+                    break;
+                }
+            }
+            if(!encontrado){
+                System.out.println("Conta não encontrada!");
+            }
+        }
+    }
     
     
 private class Compra{
@@ -158,17 +208,37 @@ private class Compra{
     private String nomeDoCliente;
     private String descricaoVenda;
     private String nomeProduto;
+    private int parcela;
+    private double valorProduto;
     private String formaPagamento;
     private String dateVenda;
 
-        public Compra(int idCompra, String cpfCliente,String nomeCliente, String descricaoVenda, String nomeProduto, String formaPagamento, String dateVenda) {
+        public Compra(int idCompra, String cpfCliente,String nomeCliente, String descricaoVenda, String nomeProduto,int parcela,double valorProduto, String formaPagamento, String dateVenda) {
             this.idCompra = idCompra;
             this.cpfCliente = cpfCliente;
             this.nomeDoCliente = nomeCliente;
             this.descricaoVenda = descricaoVenda;
             this.nomeProduto = nomeProduto;
+            this.parcela = parcela;
+            this.valorProduto = valorProduto;
             this.formaPagamento = formaPagamento;
             this.dateVenda = dateVenda;
+        }
+
+        public int getParcela() {
+            return parcela;
+        }
+
+        public void setParcela(int parcela) {
+            this.parcela = parcela;
+        }
+
+        public double getValorProduto() {
+            return valorProduto;
+        }
+
+        public void setValorProduto(double valorProduto) {
+            this.valorProduto = valorProduto;
         }
 
         public String getNomeDoCliente() {
