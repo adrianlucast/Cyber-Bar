@@ -1,4 +1,4 @@
-package com.mycompany.trabalho;
+package com.sistema.cyberbar;
 
 import java.util.Scanner;
 import java.util.Date;
@@ -12,7 +12,6 @@ import java.util.InputMismatchException;
  * @Desenvolvedor: Lucas Pessoli
  */
 public class Vendas {
-    Scanner sasa = new Scanner(System.in);
     private int idVenda;
     public int proximoId = 1;
     private String descricaoVenda;
@@ -30,10 +29,10 @@ public class Vendas {
         
     public void RegistrarVenda(){
         Scanner scn = new Scanner(System.in);
-        String formaPagamento = null;
         System.out.println("Qual método de pagamento você deseja usar?\n[1] - PIX\n[2] - Cartão de crédito\n[3] - Boleto Bancário\n[4] - Recarga");
         try{
             int escolhaC = scn.nextInt();
+            scn.nextLine();
             switch (escolhaC){
                 case 1:
                     formaPagamento = "PIX";
@@ -60,17 +59,16 @@ public class Vendas {
         }
         System.out.println(formaPagamento);
         System.out.println("Informe o nome do cliente: ");
-        String nomeDoCliente = sasa.nextLine();
+        String nomeDoCliente = scn.nextLine();
         System.out.println("Insira o CPF do cliente (vazio para não emitir cpf na nota)");
-        Scanner aa = new Scanner(System.in);
-        String cpfDoCliente = aa.nextLine();
+        String cpfDoCliente = scn.nextLine();
         if(cpfDoCliente.equals("")|| cpfDoCliente.equals(null) || cpfDoCliente.equals(" ")){
             cpfDoCliente = "Não exibido por prefêrencia do cliente.";
         }
         System.out.println("Informe a descrição da venda: ");
-        String descVenda = sasa.nextLine();
+        String descVenda = scn.nextLine();
         System.out.println("Nome do produto comprado: ");
-        String nomeDoProduto = aa.nextLine();
+        String nomeDoProduto = scn.nextLine();
         Date data = new Date();
         Date datt = data;
         String dataVenda = datt.toString();
@@ -80,9 +78,10 @@ public class Vendas {
     }
     
     public void Venda(){
+        Scanner scn = new Scanner(System.in);
         System.out.println("Você deseja:\n[1] - Exibir todas as vendas já realizadas\n[2] - Buscar uma venda por ID");
         try{
-            int escolhaC = sasa.nextInt();
+            int escolhaC = scn.nextInt();
             switch(escolhaC){
                 case 1:
                     for(Compra compra : compras){
@@ -98,7 +97,7 @@ public class Vendas {
                     break;
                 case 2:
                     System.out.println("Informe o ID da sua venda:");
-                    int idd = sasa.nextInt();
+                    int idd = scn.nextInt();
                     for(Compra compra : compras){
                         if(compra.getIdCompra()== idd){
                             System.out.println("...EMITINDO NOTA FISCAL...");
@@ -118,8 +117,41 @@ public class Vendas {
     }
         }
     
+    public void CancelaVenda(){
+        Scanner scn = new Scanner(System.in);
+        System.out.println("Informe o ID da conta a ser deletada: ");
+        int id = scn.nextInt();
+        boolean encontrado = false;
+            for(Compra compra : compras){
+                if (compra.getIdCompra() == id){
+                    encontrado = true;
+                    System.out.println("Conta encontrada! Informações abaixo:");
+                    System.out.println("ID DA COMPRA: " + compra.getIdCompra());
+                    System.out.println("CPF: " + compra.getCpfCliente());
+                    System.out.println("Nome do cliente: " + compra.getNomeProduto());
+                    System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
+                    System.out.println("Nome do produto:" + compra.getNomeProduto());
+                    System.out.println("Forma de pagamento utilizada: " + compra.getFormaPagamento());
+                    System.out.println("Data da venda: " + compra.getDateVenda());
+                    System.out.println("===========================");
+                    System.out.println("Para ter certeza que quer cancelar a venda, digite Y, para cancelar digite N ...");
+                    String res = scn.nextLine();
+                    if(res.equalsIgnoreCase("Y")){
+                        int i = compras.indexOf(compra);
+                        compras.remove(i);
+                        System.out.println("Conta cancelada/removida do sistema.");
+                    }else if(res.equalsIgnoreCase("N")){
+                        System.out.println("Saindo.....");
+                    }
+                    break;
+                }
+            }
+            if(!encontrado){
+                System.out.println("Conta não encontrada!");
+            }
+    }
     
-        
+    
 private class Compra{
     private int idCompra;
     private String cpfCliente;
