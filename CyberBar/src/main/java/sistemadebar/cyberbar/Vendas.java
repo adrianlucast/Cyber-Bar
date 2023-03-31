@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.mycompany.trabalho;
 
 import java.util.Scanner;
@@ -11,7 +7,9 @@ import java.util.InputMismatchException;
 
 /**
  *
- * @author aluno
+ * 
+ * @Análista: Alan
+ * @Desenvolvedor: Lucas Pessoli
  */
 public class Vendas {
     Scanner sasa = new Scanner(System.in);
@@ -33,7 +31,7 @@ public class Vendas {
     public void RegistrarVenda(){
         Scanner scn = new Scanner(System.in);
         String formaPagamento = null;
-        System.out.println("Qual método de pagamento você deseja usar?\n1 - PIX\n2 - Cartão de crédito\n 3 - Boleto Bancário\n 4 - Recarga");
+        System.out.println("Qual método de pagamento você deseja usar?\n[1] - PIX\n[2] - Cartão de crédito\n[3] - Boleto Bancário\n[4] - Recarga");
         try{
             int escolhaC = scn.nextInt();
             switch (escolhaC){
@@ -64,19 +62,62 @@ public class Vendas {
         System.out.println("Informe o nome do cliente: ");
         String nomeDoCliente = sasa.nextLine();
         System.out.println("Insira o CPF do cliente (vazio para não emitir cpf na nota)");
-        String cpfDoCliente = scn.nextLine();
+        Scanner aa = new Scanner(System.in);
+        String cpfDoCliente = aa.nextLine();
+        if(cpfDoCliente.equals("")|| cpfDoCliente.equals(null) || cpfDoCliente.equals(" ")){
+            cpfDoCliente = "Não exibido por prefêrencia do cliente.";
+        }
         System.out.println("Informe a descrição da venda: ");
         String descVenda = sasa.nextLine();
         System.out.println("Nome do produto comprado: ");
-        String nomeDoProduto = scn.nextLine();
+        String nomeDoProduto = aa.nextLine();
         Date data = new Date();
         Date datt = data;
         String dataVenda = datt.toString();
-        compras.add(new Compra(proximoId, cpfDoCliente, descVenda, nomeDoProduto, formaPagamento, dataVenda));
+        compras.add(new Compra(proximoId, cpfDoCliente,nomeDoCliente, descVenda, nomeDoProduto, formaPagamento, dataVenda));
         System.out.println("Conta registrada com sucesso! ID da conta: " + proximoId);
         proximoId++;
-        System.out.println(compras.get(0).getFormaPagamento());
     }
+    
+    public void Venda(){
+        System.out.println("Você deseja:\n[1] - Exibir todas as vendas já realizadas\n[2] - Buscar uma venda por ID");
+        try{
+            int escolhaC = sasa.nextInt();
+            switch(escolhaC){
+                case 1:
+                    for(Compra compra : compras){
+                    System.out.println("\n...EMITINDO NOTA FISCAL...");
+                    System.out.println("ID DA COMPRA: " + compra.getIdCompra());
+                    System.out.println("CPF: " + compra.getCpfCliente());
+                    System.out.println("Nome do cliente: " + compra.getNomeProduto());
+                    System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
+                    System.out.println("Nome do produto:" + compra.getNomeProduto());
+                    System.out.println("Forma de pagamento utilizada: " + compra.getFormaPagamento());
+                    System.out.println("Data da venda: " + compra.getDateVenda());
+            }
+                    break;
+                case 2:
+                    System.out.println("Informe o ID da sua venda:");
+                    int idd = sasa.nextInt();
+                    for(Compra compra : compras){
+                        if(compra.getIdCompra()== idd){
+                            System.out.println("...EMITINDO NOTA FISCAL...");
+                            System.out.println("ID DA COMPRA: " + compra.getIdCompra());
+                            System.out.println("CPF: " + compra.getCpfCliente());
+                            System.out.println("Nome do cliente: " + compra.getNomeProduto());
+                            System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
+                            System.out.println("Nome do produto:" + compra.getNomeProduto());
+                            System.out.println("Forma de pagamento utilizada: " + compra.getFormaPagamento());
+                            System.out.println("Data da venda: " + compra.getDateVenda());
+                        }
+                    }
+            }
+        }catch(InputMismatchException exception){
+            System.out.println("Informe um número válido.");
+            System.exit(0);
+    }
+        }
+    
     
         
 private class Compra{
@@ -88,13 +129,22 @@ private class Compra{
     private String formaPagamento;
     private String dateVenda;
 
-        public Compra(int idCompra, String cpfCliente, String descricaoVenda, String nomeProduto, String formaPagamento, String dateVenda) {
+        public Compra(int idCompra, String cpfCliente,String nomeCliente, String descricaoVenda, String nomeProduto, String formaPagamento, String dateVenda) {
             this.idCompra = idCompra;
             this.cpfCliente = cpfCliente;
+            this.nomeDoCliente = nomeCliente;
             this.descricaoVenda = descricaoVenda;
             this.nomeProduto = nomeProduto;
             this.formaPagamento = formaPagamento;
             this.dateVenda = dateVenda;
+        }
+
+        public String getNomeDoCliente() {
+            return nomeDoCliente;
+        }
+
+        public void setNomeDoCliente(String nomeDoCliente) {
+            this.nomeDoCliente = nomeDoCliente;
         }
 
         public int getIdCompra() {
