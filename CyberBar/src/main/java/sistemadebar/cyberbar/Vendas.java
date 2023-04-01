@@ -8,7 +8,7 @@ import java.util.InputMismatchException;
 /**
  *
  * 
- * @Análista: Alan
+ * @Análista: Alan Henrique Ribeiro
  * @Desenvolvedor: Lucas Pessoli
  */
 public class Vendas {
