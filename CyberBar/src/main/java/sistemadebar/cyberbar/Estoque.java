@@ -17,8 +17,8 @@ public class Estoque {
     public Date dtEntrada;
     public String dtValidade;
     public int qtdProd;
-    public int qtdMaxima;//quantidade maxima de produto
-    public String sttsProd;//Se o mesmo está disponivel ou indisponivel
+    public int qtdMaxima;
+    public String sttsProd;
     public String categoriaProd;
 
     Scanner ler = new Scanner(System.in);
