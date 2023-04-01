@@ -131,6 +131,7 @@ public class Vendas {
     
     public void CancelaVenda(){
         Scanner scn = new Scanner(System.in);
+        Scanner antibug2 = new Scanner(System.in);
         System.out.println("Informe o ID da conta a ser deletada: ");
         int id = scn.nextInt();
         boolean encontrado = false;
@@ -149,7 +150,7 @@ public class Vendas {
                     System.out.println("Data da venda: " + compra.getDateVenda());
                     System.out.println("===========================");
                     System.out.println("Para ter certeza que quer cancelar a venda, digite Y, para cancelar digite N ...");
-                    String res = scn.nextLine();
+                    String res = antibug2.nextLine();
                     if(res.equalsIgnoreCase("Y")){
                         int i = compras.indexOf(compra);
                         compras.remove(i);
