@@ -8,7 +8,7 @@ public class CyberBar {
     public static Scanner ll = new Scanner(System.in);
 
     public static void main(String[] args) {
-        char valor;
+        char Valor;
 
         do {
             boolean finalizadoLogin, finalizadoVenda = false;
@@ -28,7 +28,7 @@ public class CyberBar {
             System.out.print("Função: ");
 
             valor = ll.next().charAt(0);
-            switch (valor) {
+            switch (Valor) {
                 case '1':
                     System.out.println("Você escolheu 1- Contas a Pagar!");
 ContasAPagar contasAPagar = new ContasAPagar();
@@ -58,7 +58,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
                                 System.out.print("Empresa da conta: ");
                                 String empresa = scn.nextLine();
                                 System.out.print("Valor da conta: ");
-                                double Valor = scn.nextDouble();
+                                double valor = scn.nextDouble();
                                 contasAPagar.adicionarConta(nome, empresa, valor);
                                 System.out.println("Conta adicionada com sucesso!\n");
                                 break;
@@ -102,7 +102,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
                         }
                     }
                     if (esperar() == '0') {
-                        valor = '0';
+                        Valor = '0';
                     }
                     break;
 
@@ -111,7 +111,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
                     //ContasAReceber contaReceber = new ContaAReceber();
                     System.out.println("Você tem um total de contas a receber de: x Contas"); // Substituir x pela váriavel Contas  
                     if (esperar() == '0') {
-                        valor = '0';
+                        Valor = '0';
                     }
                     break;
 
@@ -160,7 +160,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
                         }   
                     }
                         if (esperar() == '0') {
-                            valor = '0';
+                            Valor = '0';
                             finalizadoLogin = true;
                         }
                     break;
@@ -220,7 +220,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
                         }   
                     }
                         if (esperar() == '0') {
-                            valor = '0';
+                            Valor = '0';
                             finalizadoVenda = true;
                         }
                     break;
@@ -243,7 +243,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
                 }
                     //
                     if (esperar() == '0') {
-                        valor = '0';
+                        Valor = '0';
                     }
                     break;
 
@@ -253,14 +253,14 @@ ContasAPagar contasAPagar = new ContasAPagar();
                     //ControlarEstoque estoque = new Estoque();
                     System.out.println("Seu estoque contém: \n"); // Substituir x pela váriavel Contas
                     if (esperar() == '0') {
-                        valor = '0';
+                        Valor = '0';
                     }
                     break;
                 case '7':
                     System.out.println("Você escolheu 7- Cadastrar Cliente!");
                     //CadastrarCliente cliente = new CadastrarCliente();
                     if (esperar() == '0') {
-                        valor = '0';
+                        Valor = '0';
                     }
 
                 case '0':
@@ -272,11 +272,11 @@ ContasAPagar contasAPagar = new ContasAPagar();
                 default:
                     System.out.println("Opção invalida, escolha novamente.");
                     if (esperar() == '0') {
-                        valor = '0';
+                        Valor = '0';
                     }
                     break;
             }
-        } while (valor != '0');
+        } while (Valor != '0');
     }
 
     public static char esperar() {
