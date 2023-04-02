@@ -9,9 +9,9 @@ public class CyberBar {
 
     public static void main(String[] args) {
         char valor;
-        boolean finalizadoLogin, finalizadoVenda = false;
 
         do {
+            boolean finalizadoLogin, finalizadoVenda = false;
             System.out.println("------------------------------------------------");
             System.out.print("             Bem-vindo ao Cyber Bar             ");
             System.out.println("\n------------------------------------------------");
@@ -51,7 +51,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
                         int opcao = scan.nextInt();
 
                         switch (opcao) {
-                            case 1 -> {
+                            case 1:
                                 Scanner scn = new Scanner(System.in);
                                 System.out.print("Nome da conta: ");
                                 String nome = scn.nextLine();
@@ -61,41 +61,44 @@ ContasAPagar contasAPagar = new ContasAPagar();
                                 double Valor = scn.nextDouble();
                                 contasAPagar.adicionarConta(nome, empresa, valor);
                                 System.out.println("Conta adicionada com sucesso!\n");
-                            }
-                            case 2 -> {
+                                break;
+                            
+                            case 2:
                                 Scanner sc = new Scanner(System.in);
                                 System.out.print("ID da conta a pagar: ");
                                 int idPagar = sc.nextInt();
                                 contasAPagar.pagarConta(idPagar);
-                            }
-                            case 3 -> {
-
+                                break;
+                            
+                            case 3:
                                 contasAPagar.listarContas();
                                 System.out.println();
-                            }
-                            case 4 -> {
+                                break;
+                            
+                            case 4:
                                 Scanner scne = new Scanner(System.in);
                                 System.out.print("ID da conta a procurar: ");
                                 int idProcurar = scne.nextInt();
                                 contasAPagar.procurarPorConta(idProcurar);
                                 System.out.println();
-                            }
-                            case 5 -> {
+                                break;
+                            
+                            case 5:
                                 Scanner scnr = new Scanner(System.in);
                                 System.out.print("Valor a adicionar: ");
                                 double saldoAdicionado = scnr.nextDouble();
                                 contasAPagar.adicionarSaldo(saldoAdicionado);
-                            }
-                            case 6 -> {
+                                break;
+                            
+                            case 6:
                                 System.out.println("Saldo atual: R$" + contasAPagar.getSaldo() + "\n");
-
-                            }
-                            case 0 -> {
+                                break;
+                            case 0:
                                 sair = true;
                                 break;
-                            }
-                            default ->
+                            default:
                                 System.out.println("Opção inválida!\n");
+                                break;
                         }
                     }
                     if (esperar() == '0') {
@@ -125,7 +128,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
                                 case 1:
                                     l.Registrar();
                                     System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
-                                    e = ll.nextLine();
+                                    e = ll.next();
                                     if(e.equalsIgnoreCase("Y")){
                                         }else{
                                             finalizadoLogin = true;
@@ -134,7 +137,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
                                 case 2:
                                     l.Login();
                                     System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
-                                    e = ll.nextLine();
+                                    e = ll.next();
                                     if(e.equalsIgnoreCase("Y")){
                                         }else{
                                             finalizadoLogin = true;
@@ -143,7 +146,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
                                 case 3:
                                     l.vizualizarContas();
                                     System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
-                                    e = ll.nextLine();
+                                    e = ll.next();
                                     if(e.equalsIgnoreCase("Y")){
                                         }else{
                                             finalizadoLogin = true;
@@ -280,7 +283,7 @@ ContasAPagar contasAPagar = new ContasAPagar();
         String esperar;
         char retorno = '.';
         System.out.print("Continuar usando o sistema (y/n): ");
-        esperar = ll.next();
+        esperar = ll.nextLine();
         if ("y".equals(esperar)) {
         } else {
             System.out.println("Saindo...");
