@@ -310,7 +310,7 @@ public class CyberBar {
                         }
                     }
                     if (esperar() == '0') {
-                        valor = '0';
+                        Valor = '0';
                     }
                     break;
                 case '7':
