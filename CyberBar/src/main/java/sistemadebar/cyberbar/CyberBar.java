@@ -30,9 +30,74 @@ public class CyberBar {
             valor = ll.next().charAt(0);
             switch (valor) {
                 case '1':
-                    System.out.println("Você escolheu 1-contas a pagar!");
-                    //ContasAPagar conta = new ContasAPagar();
-                    System.out.println("Você tem um total de contas a pagar de: x Reais"); // Substituir x pela váriavel saldo
+                    System.out.println("Você escolheu 1- Contas a Pagar!");
+ContasAPagar contasAPagar = new ContasAPagar();
+
+                    Scanner scan = new Scanner(System.in);
+
+                    boolean sair = false;
+                    while (!sair) {
+                        System.out.println("------------------------");
+                        System.out.println("1 - Adicionar conta");
+                        System.out.println("2 - Pagar conta");
+                        System.out.println("3 - Listar contas");
+                        System.out.println("4 - Procurar por conta");
+                        System.out.println("5 - Adicionar saldo");
+                        System.out.println("6 - Ver saldo");
+                        System.out.println("0 - Sair");
+                        System.out.println("------------------------\n");
+
+                        System.out.print("Opção: ");
+                        int opcao = scan.nextInt();
+
+                        switch (opcao) {
+                            case 1 -> {
+                                Scanner scn = new Scanner(System.in);
+                                System.out.print("Nome da conta: ");
+                                String nome = scn.nextLine();
+                                System.out.print("Empresa da conta: ");
+                                String empresa = scn.nextLine();
+                                System.out.print("Valor da conta: ");
+                                double Valor = scn.nextDouble();
+                                contasAPagar.adicionarConta(nome, empresa, valor);
+                                System.out.println("Conta adicionada com sucesso!\n");
+                            }
+                            case 2 -> {
+                                Scanner sc = new Scanner(System.in);
+                                System.out.print("ID da conta a pagar: ");
+                                int idPagar = sc.nextInt();
+                                contasAPagar.pagarConta(idPagar);
+                            }
+                            case 3 -> {
+
+                                contasAPagar.listarContas();
+                                System.out.println();
+                            }
+                            case 4 -> {
+                                Scanner scne = new Scanner(System.in);
+                                System.out.print("ID da conta a procurar: ");
+                                int idProcurar = scne.nextInt();
+                                contasAPagar.procurarPorConta(idProcurar);
+                                System.out.println();
+                            }
+                            case 5 -> {
+                                Scanner scnr = new Scanner(System.in);
+                                System.out.print("Valor a adicionar: ");
+                                double saldoAdicionado = scnr.nextDouble();
+                                contasAPagar.adicionarSaldo(saldoAdicionado);
+                            }
+                            case 6 -> {
+                                System.out.println("Saldo atual: R$" + contasAPagar.getSaldo() + "\n");
+
+                            }
+                            case 0 -> {
+                                sair = true;
+                                break;
+                            }
+                            default ->
+                                System.out.println("Opção inválida!\n");
+                        }
+                    }
                     if (esperar() == '0') {
                         valor = '0';
                     }
