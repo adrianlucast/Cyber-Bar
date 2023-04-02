@@ -15,11 +15,11 @@ public class ContasAPagar {
         contas = new ArrayList<Conta>();
     }
 
-    public void adicionarConta(String nome, String empresa, double Valor) {
+    public void adicionarConta(String nome, String empresa, double valor) {
         Conta conta = new Conta();
         conta.setNomeConta(nome);
         conta.setEmpresaConta(empresa);
-        conta.setValorConta(Valor);
+        conta.setValorConta(valor);
         contas.add(conta);
     }
 
