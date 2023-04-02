@@ -23,7 +23,10 @@ public class Estoque {
 
     Scanner ler = new Scanner(System.in);
     Date data = new Date();
-    private int qtdProduto;
+
+    public Estoque() {
+        //Construtor vazio
+    }
 
     public Estoque(String nomeProd, int codeProd, double precoProdu, String forneceProd, String dtValidad, int qtdProdu, int qtdMaxim, String sttsProdu, String categoriaProdu) {
         nomProd = nomeProd;
@@ -60,32 +63,52 @@ public class Estoque {
     }
 
     public void RemoverProduto(int quantidade) {
-        if (this.qtdProduto >= quantidade) {
-             this.qtdProduto -= quantidade;
-         } else {
-             System.out.println("Não há estoque suficiente disponível");
-         }
+        if (this.sttsProd.equals("disponivel")) { // verifica se o status está disponível
+            if (this.qtdProd >= quantidade) {
+                this.qtdProd -= quantidade;
+            } else {
+                System.out.println("Não há estoque suficiente disponível");
+            }
+        } else {
+            System.out.println("O produto não está disponível para remoção.");
+        }
     }
 
-    public void AtualizarProduto(String nomeProd, int codeProd, double precoProdu, String forneceProd, String dtValidad, int qtdProdu, int qtdMaxim, String sttsProdu, String categoriaProdu) {
-        nomProd = nomeProd;
-        codProd = codeProd;
-        precoProd = precoProdu;
-        fornecedorProd = forneceProd;
-        dtValidade = dtValidad;
-        qtdProd = qtdProdu;
-        qtdMaxima = qtdMaxim;
-        sttsProd = sttsProdu;
-        categoriaProd = categoriaProdu;
+    public void AtualizarProduto() {
+        System.out.println("Informe o novo Nome do produto");
+        nomProd = ler.next();
+        System.out.println("Informe o novo Codigo do produto");
+        codProd = ler.nextInt();
+        System.out.println("Informe o novo Preço do pruduto");
+        precoProd = ler.nextDouble();
+        System.out.println("Informe o novo Fornecedor");
+        fornecedorProd = ler.next();
+        System.out.println("Informe a nova Data de Validade do Produto");
+        dtValidade = ler.next();
+        System.out.println("Informe a nova Quantidade do Produto");
+        int qtdToAdd = ler.nextInt();
+        if (qtdProd + qtdToAdd <= qtdMaxima) { //verifica se a quantidade que está sendo adicionada não excede a quantidade máxima permitida
+            qtdProd += qtdToAdd;
+        } else {
+            System.out.println("Não é possível adicionar essa quantidade de produto, pois excede a quantidade máxima permitida.");
+        }
+        System.out.println("Informe a nova Categoria do Produto");
+        categoriaProd = ler.next();
+        System.out.println("Novo Status do Produto");
+        sttsProd = ler.next();
     }
 
     public void ExibirProduto() {
-        int exibir;
-        exibir = codProd;
-        if (exibir == codProd) {
-            System.out.println("Nome Produto: " + nomProd + " Preço do Produto: " + precoProd + " Fornecedor: "
-                    + fornecedorProd + " Validade do Produto: " + dtValidade + " Quantidade: " + qtdProd + " Categoria: "
-                    + categoriaProd +" Status do Produto: "+sttsProd+ " Data de Entrega: " + dtEntrada);
+        if (sttsProd.equalsIgnoreCase("disponível")) {
+            int exibir;
+            exibir = codProd;
+            if (exibir == codProd) {
+                System.out.println("Nome Produto: " + nomProd + " Preço do Produto: " + precoProd + " Fornecedor: "
+                        + fornecedorProd + " Validade do Produto: " + dtValidade + " Quantidade: " + qtdProd + " Categoria: "
+                        + categoriaProd + " Data de Entrega: " + dtEntrada);
+            }
+        } else {
+            System.out.println("Produto não disponível");
         }
     }
 
@@ -96,4 +119,5 @@ public class Estoque {
     public int getCodProduto() {
         return codProd;
     }
+
 }
