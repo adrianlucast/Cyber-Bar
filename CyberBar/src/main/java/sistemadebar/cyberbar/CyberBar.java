@@ -3,7 +3,7 @@ package sistemadebar.cyberbar;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class Sistema {
+public class CyberBar {
 
     public static Scanner ll = new Scanner(System.in);
 
@@ -159,11 +159,26 @@ public class Sistema {
 
                 case '5':
                     System.out.println("Você escolheu 5-Produtos!");
+                    Produto pp = new Produto();
+                    System.out.println("Digite o que deseja fazer:\n 1- para adicionar produto\n 2- para atualizar o estoque");//inicia sistema estoque
+                    int numCod = ll.nextInt();
+                switch (numCod) {
+                    case 1://caso add produto
+                        pp.Produto();
+                        break;
+                    case 2://caso atualizar qnt de produto no estoque
+                        pp.prodAtualizarEstoque();
+                        break;
+                    default://caso invalido
+                        System.out.println("Valor invalido");
+                        break;
+                }
                     //
                     if (esperar() == '0') {
                         valor = '0';
                     }
                     break;
+
 
                 case '6':
                     System.out.println("Você escolheu 6-Averiguar estoque!");

@@ -19,7 +19,7 @@ public class Produto {
     public boolean prodSituacao = false;
     private String prodDataCadastro;
     private String prodDataAtualizacao;
-
+//geters e seters para uso em outras classe caso venham a ter necessidade
     /**
      * @return the ProdId
      */
@@ -75,8 +75,8 @@ public class Produto {
     public static int getContador() {
         return contador;
     }
-    
-    public void Produto(){
+ // fim dos geters e seters   
+    public void Produto(){//adiciona um produto novo(ao banco caso ele existisse
         contador ++;
         this.prodId = contador;
         System.out.println("Digite o tipo do produto: ");
@@ -91,8 +91,10 @@ public class Produto {
       
     }
     
-    public void prodAtualizarEstoque(){
-         this.prodDataCadastro = "Data cadastro: "+dd;
+    public void prodAtualizarEstoque(){//funcao onde pelo id selecionado(semifuncional pela falta do banco) atualiza a qnt no banco de um produto
+         System.out.println("Digite o Id do produto: ");
+         int verificaId = sc.nextInt();
+         if(verificaId == prodId){
         if(prodEstoque == 0){
             prodSituacao = true;
         }
@@ -117,7 +119,9 @@ public class Produto {
                   System.out.println("Operaçao invalida");
           }
           prodDataAtualizacao = "Data update: "+dd;
-        } 
+        }}else{
+             System.out.println("Id invalido");
+         } 
     }
     
 }
