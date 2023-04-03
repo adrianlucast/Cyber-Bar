@@ -2,6 +2,7 @@ package sistemadebar.cyberbar;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 public class Sistema {
 
@@ -231,12 +232,79 @@ public class Sistema {
                         valor = '0';
                     }
                     break;
+                    
                 case '7':
                     System.out.println("Você escolheu 7- Cadastrar Cliente!");
-                    //CadastrarCliente cliente = new CadastrarCliente();
+                    ArrayList<ClienteCadastro> clientes = new ArrayList<ClienteCadastro>(); // arrayList onde ficam salvos os clientes
+                    ClienteCadastro cClientes[] = new ClienteCadastro[clientes.size()]; // Inicialização de um array para organizar os clientes
+                    String opc;
+                    
+                    do {
+                        // menu da classe
+                        System.out.println("1 - CADASTRAR NOVO CLIENTE\n"
+                                          +"2 - EDITAR CLIENTE\n"
+                                          +"3 - MOSTRAR CADASTRO DE CLIENTE\n"
+                                          +"4 - EXCLUIR CLIENTE\n"
+                                          +"0 - SAIR");
+
+                        opc = ll.nextLine();
+
+                        int idxCliente = 0; // op 1
+                        int idCl; // op 2, op 3 e op 4
+                        switch (opc) {
+                            case "1" : 
+                                idxCliente++; // é o Indice do Cliente
+
+                                cClientes[idxCliente].adicionarCliente(); // função para cadastrar novo cliente
+                                clientes.add((idxCliente-1),cClientes[idxCliente]); // salvando no array list pra ser encontrado depois
+
+                                break;
+
+                            case "2" :
+                                System.out.print("Informe o ID do Cliente: ");
+                                idCl = ll.nextInt();
+                                ll.nextLine();
+
+                                cClientes[idCl].editarCliente();
+                                clientes.add (idCl, cClientes[idCl]);
+
+                                break;
+
+                            case "3" : 
+                                System.out.print("Informe o ID do Cliente: ");
+                                idCl = ll.nextInt();
+                                ll.nextLine();
+
+                                cClientes[idCl].exibirCliente();
+
+                                break;
+
+                            case "4" : 
+                                System.out.print("Informe o ID do Cliente: ");
+                                idCl = ll.nextInt();
+                                ll.nextLine();
+
+                                cClientes[idCl].removerCliente();
+
+                                break;
+
+                            case "0" :
+                                System.out.println("Saindo...");
+                                opc = "0";
+                                
+                                break;
+                                
+                            default : 
+                                System.out.println("Opção Inválida, tente novamente.");
+                                
+                                break;
+                        }
+                    } while (!"0".equals(opc));
+                    
                     if (esperar() == '0') {
                         valor = '0';
                     }
+                    break;
 
                 case '0':
                     System.out.println("------------------------------------------------");
