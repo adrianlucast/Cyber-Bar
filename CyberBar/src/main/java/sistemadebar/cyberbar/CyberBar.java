@@ -108,12 +108,23 @@ public class CyberBar {
 
                 case '2':
                     System.out.println("Você escolheu 2-contas a receber!");
-                    //ContasAReceber contaReceber = new ContaAReceber();
-                    System.out.println("Você tem um total de contas a receber de: x Contas"); // Substituir x pela váriavel Contas  
+                    contReceber c = new contReceber();
+                    while (finalizadoContaR == false){
+                        c.GerarConta();
+                        System.out.println("Deseja continuar usando o ContasAReceber? (y/n)");
+                        String rss = ll.next();
+                        if(rss.equalsIgnoreCase("y")){
+                            
+                        }else{
+                            finalizadoContaR = true;
+                        }
+                }
                     if (esperar() == '0') {
                         Valor = '0';
                     }
+
                     break;
+
 
                 case '3':
                     String e;
