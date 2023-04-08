@@ -53,6 +53,8 @@ public class Estoque {
         dtValidade = ler.next();
         System.out.println("Informe a Quantidade do Produto");
         qtdProd = ler.nextInt();
+        System.out.println("Informe a Quantidade Maxima de Armazenagem do Produto");
+        qtdMaxima = ler.nextInt();
         System.out.println("Informe a Categoria do Produto");
         categoriaProd = ler.next();
         System.out.println("Status do Produto");
@@ -70,7 +72,7 @@ public class Estoque {
                 System.out.println("Não há estoque suficiente disponível");
             }
         } else {
-            System.out.println("O produto não está disponível para remoção.");
+            System.out.println("O produto encontra-se indisponivel para remoção.");
         }
     }
 
@@ -108,7 +110,7 @@ public class Estoque {
                         + categoriaProd + " Data de Entrega: " + dtEntrada);
             }
         } else {
-            System.out.println("Produto não disponível");
+            System.out.println("Produto Indisponivel");
         }
     }
 
