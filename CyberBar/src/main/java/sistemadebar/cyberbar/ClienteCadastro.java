@@ -28,7 +28,7 @@ public class ClienteCadastro {
     private String cepCliente;
     private String rgCliente;
     
-    public void adicionarCliente () {
+    public adicionarCliente () {
         System.out.println("\nCADASTRO DE CLIENTES");
         CONTADORID++;
         this.idCliente = CONTADORID;
