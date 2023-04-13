@@ -65,7 +65,7 @@ public class Estoque {
     }
 
     public void RemoverProduto(int quantidade) {
-        if (this.sttsProd.equals("disponivel")) { // verifica se o status está disponível
+        if (this.sttsProd.equalsIgnoreCase("disponivel")) { // verifica se o status está disponível
             if (this.qtdProd >= quantidade) {
                 this.qtdProd -= quantidade;
             } else {
