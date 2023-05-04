@@ -7,10 +7,10 @@ import java.util.Date;
 
 public class CyberBar {
 
-    public static Scanner ll = new Scanner(System.in);
+    public static Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) {
-        char Valor;
+        char opcaoMenu;
         Date data = new Date();
         System.out.println("data: "+data);
         
@@ -31,13 +31,11 @@ public class CyberBar {
             System.out.println("------------------------------------------------");
             System.out.print("Função: ");
 
-            Valor = ll.next().charAt(0);
-            switch (Valor) {
+            opcaoMenu = scanner.next().charAt(0);
+            switch (opcaoMenu) {
                 case '1':
                     System.out.println("Você escolheu 1- Contas a Pagar!");
                     ContasAPagar contasAPagar = new ContasAPagar();
-
-                    Scanner scan = new Scanner(System.in);
 
                     boolean sair = false;
                     while (!sair) {
@@ -52,133 +50,148 @@ public class CyberBar {
                         System.out.println("------------------------\n");
 
                         System.out.print("Opção: ");
-                        int opcao = scan.nextInt();
+                        String opcao = scanner.nextLine();
 
                         switch (opcao) {
-                            case 1:
-                                Scanner scn = new Scanner(System.in);
+                            case "1":
                                 System.out.print("Nome da conta: ");
-                                String nome = scn.nextLine();
+                                String nomeConta = scanner.nextLine();
+                                
                                 System.out.print("Empresa da conta: ");
-                                String empresa = scn.nextLine();
+                                String empresaConta = scanner.nextLine();
+                                
                                 System.out.print("Valor da conta: ");
-                                double valor = scn.nextDouble();
-                                contasAPagar.adicionarConta(nome, empresa, valor);
+                                double valorConta = scanner.nextDouble();
+                                
+                                contasAPagar.adicionarConta(nomeConta, empresaConta, valorConta);
                                 System.out.println("Conta adicionada com sucesso!\n");
                                 break;
 
-                            case 2:
-                                Scanner sc = new Scanner(System.in);
+                            case "2":
                                 System.out.print("ID da conta a pagar: ");
-                                int idPagar = sc.nextInt();
+                                int idPagar = scanner.nextInt();
+                                
                                 contasAPagar.pagarConta(idPagar);
                                 break;
 
-                            case 3:
+                            case "3":
                                 contasAPagar.listarContas();
                                 System.out.println();
                                 break;
 
-                            case 4:
-                                Scanner scne = new Scanner(System.in);
+                            case "4":
                                 System.out.print("ID da conta a procurar: ");
-                                int idProcurar = scne.nextInt();
+                                int idProcurar = scanner.nextInt();
+                                
                                 contasAPagar.procurarPorConta(idProcurar);
                                 System.out.println();
                                 break;
 
-                            case 5:
-                                Scanner scnr = new Scanner(System.in);
+                            case "5":
                                 System.out.print("Valor a adicionar: ");
-                                double saldoAdicionado = scnr.nextDouble();
-                                contasAPagar.adicionarSaldo(saldoAdicionado);
+                                double saldoAdicionar = scanner.nextDouble();
+                                
+                                contasAPagar.adicionarSaldo(saldoAdicionar);
                                 break;
 
-                            case 6:
+                            case "6":
                                 System.out.println("Saldo atual: R$" + contasAPagar.getSaldo() + "\n");
                                 break;
-                            case 0:
+                               
+                            case "0":
                                 sair = true;
                                 break;
+                                
                             default:
                                 System.out.println("Opção inválida!\n");
                                 break;
                         }
                     }
-                    if (esperar() == '0') {
-                        Valor = '0';
+                    if (continuarExecucao() == '0') {
+                        opcaoMenu = '0';
                     }
                     break;
 
                 case '2':
                     System.out.println("Você escolheu 2-contas a receber!");
-                    contReceber c = new contReceber();
+                    ContasaReceber contaReceber = new ContasaReceber();
+                    boolean finalizadoContaR = false;
+                    
                     while (finalizadoContaR == false){
-                        c.GerarConta();
+                        contaReceber.GerarConta();
                         System.out.println("Deseja continuar usando o ContasAReceber? (y/n)");
-                        String rss = ll.next();
+                        String rss = scanner.next();
                         if(rss.equalsIgnoreCase("y")){
                             
                         }else{
                             finalizadoContaR = true;
                         }
                 }
-                    if (esperar() == '0') {
-                        Valor = '0';
+                    if (continuarExecucao() == '0') {
+                        opcaoMenu = '0';
                     }
 
                     break;
 
 
                 case '3':
-                    String e;
-                    LoginCadastro l = new LoginCadastro();
+                    String continuarLogin;
+                    LoginCadastro login = new LoginCadastro();
                     finalizadoLogin = false;
+                    
                     while (finalizadoLogin == false) {
                         System.out.println("\nVocê escolheu 3-Login!");
                         System.out.println("Você deseja:\n[1] - REGISTRAR\n[2] - LOGAR(\n[3] - LISTAR CONTA(S)");
+                        
                         try {
-                            int escolha = ll.nextInt();
+                            String escolha = scanner.nextLine();
                             switch (escolha) {
-                                case 1:
-                                    l.Registrar();
+                                case "1":
+                                    login.Registrar();
                                     System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
-                                    e = ll.next();
-                                    if (e.equalsIgnoreCase("Y")) {
+                                    continuarLogin = scanner.next();
+                                    
+                                    if (continuarLogin.equalsIgnoreCase("Y")) {
                                     } else {
                                         finalizadoLogin = true;
                                     }
                                     break;
-                                case 2:
-                                    l.Login();
+                                    
+                                case "2":
+                                    login.Login();
                                     System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
-                                    e = ll.next();
-                                    if (e.equalsIgnoreCase("Y")) {
+                                    continuarLogin = scanner.next();
+                                    if (continuarLogin.equalsIgnoreCase("Y")) {
                                     } else {
                                         finalizadoLogin = true;
                                     }
                                     break;
-                                case 3:
-                                    l.vizualizarContas();
+                                    
+                                case "3":
+                                    login.vizualizarContas();
                                     System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
-                                    e = ll.next();
-                                    if (e.equalsIgnoreCase("Y")) {
+                                    continuarLogin = scanner.next();
+                                    if (continuarLogin.equalsIgnoreCase("Y")) {
                                     } else {
                                         finalizadoLogin = true;
                                     }
                                     break;
+                                    
                                 default:
                                     System.out.println("Opção não encontrada!");
                             }
+                            
                         } catch (InputMismatchException exception) {
                             System.out.println("Informe um número válido!");
                         }
                     }
-                    if (esperar() == '0') {
-                        Valor = '0';
+                    if (continuarExecucao() == '0') {
+                        opcaoMenu = '0';
                         finalizadoLogin = true;
                     }
                     break;
+
+
 
                 case '4':
                     String e1;
@@ -189,9 +202,9 @@ public class CyberBar {
                         System.out.println("\nVocê escolheu 4-Gerenciar Vendas!");
                         System.out.println("Você deseja:\n[1] - REGISTRAR VENDA\n[2] - BAIXAR PARCELA(S) \n[3] - LISTAR VENDA(S)\n[4] - CANCELAR VENDA(S)");
                         try {
-                            int escolha1 = ll.nextInt();
+                            String escolha1 = scanner.nextLine();
                             switch (escolha1) {
-                                case 1:
+                                case "1":
                                     v.RegistrarVenda();
                                     System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
                                     e1 = antiBug.nextLine();
@@ -200,7 +213,8 @@ public class CyberBar {
                                         finalizadoVenda = true;
                                     }
                                     break;
-                                case 2:
+                                    
+                                case "2":
                                     v.BaixaParcela();
                                     System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
                                     e1 = antiBug.nextLine();
@@ -209,7 +223,8 @@ public class CyberBar {
                                         finalizadoVenda = true;
                                     }
                                     break;
-                                case 3:
+                                    
+                                case "3":
                                     v.Venda();
                                     System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
                                     e1 = antiBug.nextLine();
@@ -218,7 +233,8 @@ public class CyberBar {
                                         finalizadoVenda = true;
                                     }
                                     break;
-                                case 4:
+                                    
+                                case "4":
                                     v.CancelaVenda();
                                     System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
                                     e1 = antiBug.nextLine();
@@ -234,8 +250,8 @@ public class CyberBar {
                             System.out.println("ERRO: Informe um número válido!");
                         }
                     }
-                    if (esperar() == '0') {
-                        Valor = '0';
+                    if (continuarExecucao() == '0') {
+                        opcaoMenu = '0';
                         finalizadoVenda = true;
                     }
                     break;
@@ -244,7 +260,7 @@ public class CyberBar {
                     System.out.println("Você escolheu 5-Produtos!");
                     Produto pp = new Produto();
                     System.out.println("Digite o que deseja fazer:\n 1- para adicionar produto\n 2- para atualizar o estoque");//inicia sistema estoque
-                    int numCod = ll.nextInt();
+                    int numCod = scanner.nextInt();
                     switch (numCod) {
                         case 1://caso add produto
                             pp.Produto();
@@ -256,9 +272,9 @@ public class CyberBar {
                             System.out.println("Valor invalido");
                             break;
                     }
-                    //
-                    if (esperar() == '0') {
-                        Valor = '0';
+                    
+                    if (continuarExecucao() == '0') {
+                        opcaoMenu = '0';
                     }
                     break;
 
@@ -276,9 +292,9 @@ public class CyberBar {
                                 + "4 - EXCLUIR PRODUTO");
 
                         try {
-                            int escolha3 = ll.nextInt();
+                            String escolha3 = scanner.nextLine();
                             switch (escolha3) {
-                                case 1:
+                                case "1":
                                     estoque1.AdicionarProduto();
                                     System.out.println("Você deseja continuar rodando o Averiguar Estoque? (y/n)");
                                     e2 = ant.nextLine();
@@ -287,36 +303,43 @@ public class CyberBar {
                                         fecharEstoque = true;
                                     }
                                     break;
-                                case 2:
+                                    
+                                case "2":
                                     Scanner ler = new Scanner(System.in);
                                     estoque1.AtualizarProduto();
                                     System.out.println("Você deseja continuar rodando o Averiguar Estoque? (y/n)");
                                     e2 = ant.nextLine();
+                                    
                                     if (e2.equalsIgnoreCase("Y")) {
                                     } else {
                                         fecharEstoque = true;
                                     }
                                     break;
-                                case 3:
+                                    
+                                case "3":
                                     estoque1.ExibirProduto();
                                     System.out.println("Você deseja continuar rodando o Averiguar Estoque? (y/n)");
                                     e2 = ant.nextLine();
+                                    
                                     if (e2.equalsIgnoreCase("Y")) {
                                     } else {
                                         fecharEstoque = true;
                                     }
                                     break;
-                                case 4:
+                                    
+                                case "4":
                                     System.out.println("Informe a quantidade de produtos a serem removidos:");
                                     int quantidade = ant.nextInt();
                                     estoque1.RemoverProduto(quantidade);
                                     System.out.println("Você deseja continuar rodando o Averiguar Estoque? (y/n)");
                                     e2 = ant.nextLine();
+                                    
                                     if (e2.equalsIgnoreCase("Y")) {
                                     } else {
                                         fecharEstoque = true;
                                     }
                                     break;
+                                    
                                 default:
                                     System.out.println("Opção não encontrada!");
                             }
@@ -324,8 +347,8 @@ public class CyberBar {
                             System.out.println("ERRO: Informe um número válido!");
                         }
                     }
-                    if (esperar() == '0') {
-                        Valor = '0';
+                    if (continuarExecucao() == '0') {
+                        opcaoMenu = '0';
                     }
                     break;
                 case '7':
@@ -342,7 +365,7 @@ public class CyberBar {
                                           +"4 - EXCLUIR CLIENTE\n"
                                           +"0 - SAIR");
 
-                        opc = ll.nextLine();
+                        opc = scanner.nextLine();
 
                         int idxCliente = 0; // op 1
                         int idCl; // op 2, op 3 e op 4
@@ -357,8 +380,8 @@ public class CyberBar {
 
                             case "2" :
                                 System.out.print("Informe o ID do Cliente: ");
-                                idCl = ll.nextInt();
-                                ll.nextLine();
+                                idCl = scanner.nextInt();
+                                scanner.nextLine();
 
                                 cClientes[idCl].editarCliente();
                                 clientes.add (idCl, cClientes[idCl]);
@@ -367,8 +390,8 @@ public class CyberBar {
 
                             case "3" : 
                                 System.out.print("Informe o ID do Cliente: ");
-                                idCl = ll.nextInt();
-                                ll.nextLine();
+                                idCl = scanner.nextInt();
+                                scanner.nextLine();
 
                                 cClientes[idCl].exibirCliente();
 
@@ -376,8 +399,8 @@ public class CyberBar {
 
                             case "4" : 
                                 System.out.print("Informe o ID do Cliente: ");
-                                idCl = ll.nextInt();
-                                ll.nextLine();
+                                idCl = scanner.nextInt();
+                                scanner.nextLine();
 
                                 cClientes[idCl].removerCliente();
 
@@ -396,8 +419,8 @@ public class CyberBar {
                         }
                     } while (!"0".equals(opc));
                     
-                    if (esperar() == '0') {
-                        Valor = '0';
+                    if (continuarExecucao() == '0') {
+                        opcaoMenu = '0';
                     }
                     break;
 
@@ -409,19 +432,19 @@ public class CyberBar {
 
                 default:
                     System.out.println("Opção invalida, escolha novamente.");
-                    if (esperar() == '0') {
-                        Valor = '0';
+                    if (continuarExecucao() == '0') {
+                        opcaoMenu = '0';
                     }
                     break;
             }
-        } while (Valor != '0');
+        } while (opcaoMenu != '0');
     }
 
-    public static char esperar() {
+    public static char continuarExecucao() {
         String esperar;
         char retorno = '.';
         System.out.print("Continuar usando o sistema (y/n): ");
-        esperar = ll.nextLine();
+        esperar = scanner.nextLine();
         if ("y".equals(esperar)) {
         } else {
             System.out.println("Saindo...");
