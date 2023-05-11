@@ -10,83 +10,79 @@ import java.util.Date;
 public class ClienteCadastro {
 
     public static Scanner sc = new Scanner (System.in);
-    static Date dataNasc = new Date ();
-    static int CONTADORID = 0;
-    String data;
-    boolean ativo = true;
+    static Date dateDataNascimento = new Date ();
+    static int intContadorID = 0;
+    boolean boolAtivo = true;
     
-    // atributos publicos
-    public int idCliente;
-    public String nomeCliente;
-    public String telefoneCliente;
-    public String prefCliente;
-    public Date datanascCliente;
+    public int intIdCliente;
+    public String strNomeCliente;
+    public String strTelefoneCliente;
+    public String strPrefCliente;
+    public Date dateDataNascCliente;
     
-    // atributos privados
-    private String cpfCliente;
-    private String enderecoCliente;
-    private String cepCliente;
-    private String rgCliente;
+    private String strCpfCliente;
+    private String strEnderecoCliente;
+    private String strCepCliente;
+    private String strRgCliente;
     
-    public adicionarCliente () {
+    public ClienteCadastro () {
         System.out.println("\nCADASTRO DE CLIENTES");
-        CONTADORID++;
-        this.idCliente = CONTADORID;
+        intContadorID++;
+        this.intIdCliente = intContadorID;
         
-        // inserção dos dados pelo cadastro de clientes
         System.out.print("\nNome....: ");
-        this.nomeCliente = sc.nextLine();
+        this.strNomeCliente = sc.nextLine();
         System.out.print("\nCPF.....: ");
-        this.cpfCliente = sc.nextLine();
+        this.strCpfCliente = sc.nextLine();
         System.out.print("\nRG......: ");
-        this.rgCliente = sc.nextLine();
+        this.strRgCliente = sc.nextLine();
         System.out.print("\nTelefone: ");
-        this.telefoneCliente = sc.nextLine();
+        this.strTelefoneCliente = sc.nextLine();
         System.out.print("\nCEP.....: ");
-        this.cepCliente = sc.nextLine();
+        this.strCepCliente = sc.nextLine();
         System.out.print("\nEndereço:");
-        this.enderecoCliente = sc.nextLine();
+        this.strEnderecoCliente = sc.nextLine();
         
         System.out.println("\nCliente Cadastrado com Sucesso!");        
     }
     
     public void editarCliente () {
-        if (this.ativo == false) {
+        if (this.boolAtivo == false) {
             System.out.println("Cliente Inativo");
         } else {
             System.out.println("\nEDITAR CLIENTE");
             
             // alteração dos dados pela edição de clientes
             System.out.print("\nNome....: ");
-            this.nomeCliente = sc.nextLine();
+            this.strNomeCliente = sc.nextLine();
             System.out.print("\nCPF.....: ");
-            this.cpfCliente = sc.nextLine();
+            this.strCpfCliente = sc.nextLine();
             System.out.print("\nRG......: ");
-            this.rgCliente = sc.nextLine();
+            this.strRgCliente = sc.nextLine();
             System.out.print("\nTelefone: ");
-            this.telefoneCliente = sc.nextLine();
+            this.strTelefoneCliente = sc.nextLine();
             System.out.print("\nCEP.....: ");
-            this.cepCliente = sc.nextLine();
+            this.strCepCliente = sc.nextLine();
             System.out.print("\nEndereço:");
-            this.enderecoCliente = sc.nextLine();
+            this.strEnderecoCliente = sc.nextLine();
 
             System.out.println("\nCadastro Alterado com sucesso!");
         }     
     }
     
     public void exibirCliente () {
-        if (this.ativo == false) {
+        if (this.boolAtivo == false) {
             System.out.println("Cliente Inativo");
         } else {
             System.out.println("\nEXIBIR CLIENTE");
 
             // exibição dos dados
-            System.out.print("\nNome....: "+this.nomeCliente);
-            System.out.print("\nCPF.....: "+this.cpfCliente);
-            System.out.print("\nRG......: "+this.rgCliente);
-            System.out.print("\nTelefone: "+this.telefoneCliente);
-            System.out.print("\nCEP.....: "+this.cepCliente);
-            System.out.print("\nEndereço:"+this.enderecoCliente);
+            System.out.print("\nNome....: "+this.strNomeCliente);
+            System.out.print("\nCPF.....: "+this.strCpfCliente);
+            System.out.print("\nRG......: "+this.strRgCliente);
+            System.out.print("\nTelefone: "+this.strTelefoneCliente);
+            System.out.print("\nCEP.....: "+this.strCepCliente);
+            System.out.print("\nEndereço:"+this.strEnderecoCliente);
         }
     }
     
@@ -99,7 +95,7 @@ public class ClienteCadastro {
         confirma = sc.nextLine();
         
         switch (confirma) {
-            case "S", "s", "Sim" : this.ativo = false; break;
+            case "S", "s", "Sim" : this.boolAtivo = false; break;
             case "N", "n", "Nao" : System.out.println("Operação cancelada"); break;
             default : System.out.println("Opção Inválida."
                                         +"Cancelando operação!");
