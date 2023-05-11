@@ -10,17 +10,16 @@ import java.util.Scanner;
  * @Desenvolvedor: Lucas Pessoli
  */
 public class LoginCadastro {
-    private String user;
-    private String email;
-    private String senha;
-    private int idCadastro;
-    private int proximoId = 1;
+    private String strUser;
+    private String strEmail;
+    private String strSenha;
+    private int intIdCadastro;
+    private int intProximoId = 1;
     ArrayList<Conta> contas;
  
     public LoginCadastro(){
         contas = new ArrayList<Conta>();
     }
-    
     
     public void Registrar(){
         Scanner scn = new Scanner(System.in);
@@ -30,8 +29,8 @@ public class LoginCadastro {
         String email = scn.nextLine();
         System.out.println("Informe sua senha: ");
         String senha = scn.nextLine();
-        contas.add(new Conta(proximoId,user, email, senha));
-        proximoId ++;
+        contas.add(new Conta(intProximoId,user, email, senha));
+        intProximoId ++;
         System.out.println("============ Registrado com sucesso! ============");
     }
     
@@ -128,7 +127,5 @@ private class Conta{
         public void setSenha(String senha) {
             this.senha = senha;
         }
-    
-    
     }
 }
