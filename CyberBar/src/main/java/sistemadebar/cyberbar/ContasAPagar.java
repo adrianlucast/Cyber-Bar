@@ -8,14 +8,14 @@ import java.util.ArrayList;
  */
 public class ContasAPagar {
 
-    private double saldo;
+    private double dblSaldo;
     private ArrayList<Conta> contas;
 
     public ContasAPagar() {
         contas = new ArrayList<Conta>();
     }
 
-    public void adicionarConta(String nome, String empresa, double valor) {
+    public void adicionar(String nome, String empresa, double valor) {
         Conta conta = new Conta();
         conta.setNomeConta(nome);
         conta.setEmpresaConta(empresa);
@@ -23,11 +23,11 @@ public class ContasAPagar {
         contas.add(conta);
     }
 
-    public void pagarConta(int id) {
+    public void pagar(int id) {
         for (int i = 0; i < contas.size(); i++) {
             Conta conta = contas.get(i);
             if (conta.getIdConta() == id) {
-                saldo -= conta.getValorConta();
+                dblSaldo -= conta.getValorConta();
                 contas.remove(i);
                 System.out.println("Conta paga com sucesso!\n");
                 return;
@@ -37,14 +37,14 @@ public class ContasAPagar {
         }
     }
 
-    public void listarContas() {
+    public void listar() {
         System.out.println("Lista de contas:");
         for (Conta conta : contas) {
             System.out.println(conta.getIdConta() + " - " + conta.getNomeConta() + " - " + conta.getEmpresaConta() + " - R$" + conta.getValorConta());
             }
     }
 
-    public void procurarPorConta(int id) {
+    public void procurar(int id) {
         for (Conta conta : contas) {
             if (conta.getIdConta() == id) {
                 System.out.println(conta.getIdConta() + " - " + conta.getNomeConta() + " - " + conta.getEmpresaConta() + " - R$" + conta.getValorConta() + "\n");
@@ -56,7 +56,7 @@ public class ContasAPagar {
 
     public void adicionarSaldo(double valor) {
         if (valor > 0) {
-            saldo += valor;
+            dblSaldo += valor;
             System.out.println("Saldo adicionado com sucesso!\n");
         } else {
             System.out.println("Digite um valor valido!");
@@ -64,21 +64,19 @@ public class ContasAPagar {
     }
 
     public void setSaldo(double saldo) {
-        this.saldo = saldo;
+        this.dblSaldo = saldo;
     }
 
     public double getSaldo() {
-        return saldo;
+        return dblSaldo;
     }
 
     private class Conta {
-
         private static final int IDCONTA = 1;
         private static final int PRIMEIRO_ID_CONTA = 1;
         private static final String NOMECONTA = "";
         private static final String EMPRESACONTA = "";
         private static final double VALORCONTA = 0.0;
-
         private int idConta;
         private String nomeConta;
         private String empresaConta;
