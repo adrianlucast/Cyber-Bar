@@ -4,31 +4,25 @@
 package sistemadebar.cyberbar;
 import java.util.*;
 
-public class contReceber 
+public class ContasaReceber 
 {
     Date data = new Date();
-    public double valor;
-    private String dataCompra= "Data Compra "+data;
-    public String ContBaixa= "Data Baixa "+data;
-    private int idCliente;
-    public int proxid = 1;
-    public boolean status;
-    private int numParcela;
-    public double imposto = 0.05;
-    private String cliente;
-    private int idConta;
+    public double dblValor;
+    private String strDataCompra= "Data Compra "+data;
+    public String strContaBaixa= "Data Baixa "+data;
+    private int intIdCliente;
+    public int intPorxId = 1;
+    public boolean blnStatus;
+    private int intNumParcela;
+    public double dblImposto = 0.05;
+    private String strCliente;
+    private int intIdConta;
     ArrayList<ContasR> conta;
     
-    public contReceber(){
+    public ContasaReceber(){
         conta = new ArrayList<ContasR>();
     }
 
-//    private double valorConta;
-//    private String descConta;
-//    private int parcela;
-//    private double imposto;
-    
-    
     public void GerarConta(){
         
         System.out.println("Você deseja: [1] - Vizualiazar contas, [2] - Cadastrar contas");
@@ -43,65 +37,65 @@ public class contReceber
                         System.out.println("Nome/Descrição da conta: " + c.getDescConta());
                         System.out.println("Valor da conta: : " + c.getValorConta());
                         System.out.println("Parcelas da conta: " + c.getParcela());
-                        System.out.println("Imposto aplicado: " + imposto*100 +" reais!");
+                        System.out.println("Imposto aplicado: " + dblImposto*100 +" reais!");
                         System.out.println("\n");
                     }
                 }else{
                         System.out.println("nenhuma conta encontrada no sistema!");
                 }
                 break;
+                
             case 2:
                 Scanner s = new Scanner(System.in);
                 System.out.println("Informe o nome/descrição da conta!");
                 String descVenda = s.nextLine();
+                
                 System.out.println("Informe o valor da conta: ");
                 double valor = s.nextDouble();
+                
                 System.out.println("Você deseja parcelar a conta? (y/n)");
                 String r = s.next();
+                
                 if (r.equalsIgnoreCase("y")){
                     System.out.println("Informe o número de parcelas: ");
-                    numParcela = s.nextInt();
+                    intNumParcela = s.nextInt();
                 }else{
                     System.out.println("Prosseguindo...");
                 }
-                System.out.println("Taxa de imposto de: " + imposto*100 + " Reais aplicada! Totalizando:" + imposto(valor));
-                conta.add(new ContasR(proxid, valor, descVenda, numParcela));
-                proxid++;
+                
+                System.out.println("Taxa de imposto de: " + dblImposto*100 + " Reais aplicada! Totalizando:" + imposto(valor));
+                conta.add(new ContasR(intPorxId, valor, descVenda, intNumParcela));
+                intPorxId++;
                 System.out.println("=======Conta cadastrada com sucesso!=======");
                 }
         }
 
     public String getDataCompra() {
-        return dataCompra;
+        return strDataCompra;
     }
-
 
     public void setDataCompra(String dataCompra) {
-        this.dataCompra = dataCompra;
+        this.strDataCompra = dataCompra;
     }
-
 
     public int getNumParcela() {
-        return numParcela;
+        return intNumParcela;
     }
-
 
     public void setNumParcela(int numParcela) {
-        this.numParcela = numParcela;
+        this.intNumParcela = numParcela;
     }
 
-
     public String getCliente() {
-        return cliente;
+        return strCliente;
     }
 
     public void setCliente(String cliente) {
-        this.cliente = cliente;
+        this.strCliente = cliente;
     }
 
-
     public int getIdCliente() {
-        return idCliente;
+        return intIdCliente;
     }
 
     public void gerarConta() {
@@ -109,103 +103,99 @@ public class contReceber
     }
 
     public void pullCliente() {
-        System.out.println("Cliente: " + this.cliente);
+        System.out.println("Cliente: " + this.strCliente);
     }
 
     public void pushValor(double valor) {
-        this.valor += valor;
+        this.dblValor += valor;
     }
 
     public double imposto(double valor) {
-        double calc1 = imposto*100;
+        double calc1 = dblImposto*100;
         calc1 = valor+calc1;
         return (calc1);
     }
 
     public int getNparcel() {
-        return this.numParcela;
+        return this.intNumParcela;
     }
 
     public void setNparcel(int numParcela) {
-        this.numParcela = numParcela;
+        this.intNumParcela = numParcela;
     }
 
     public int getIdConta() {
-        return idConta;
+        return intIdConta;
     }
 
-
-
     public double getValor() {
-        return valor;
+        return dblValor;
     }
 
     public double getImposto() {
-        return imposto;
+        return dblImposto;
     }
 
     public String getContBaixa() {
-        return ContBaixa;
+        return strContaBaixa;
     }
 
     public boolean getStatus() {
-        return status;
+        return blnStatus;
     }
 
     public void setStatus(boolean status) {
-        this.status = status;
+        this.blnStatus = status;
         if (status) {
-            this.ContBaixa = "Data Baixa: " + new Date();
+            this.strContaBaixa = "Data Baixa: " + new Date();
         } else {
-            this.ContBaixa = "";
+            this.strContaBaixa = "";
         }
     }
     
-    
 private class ContasR{
-    private int idConta;
-    private double valorConta;
-    private String descConta;
-    private int parcela;
+    private int intIdConta;
+    private double dblValorConta;
+    private String strDescrConta;
+    private int intParcela;
 
         public ContasR(int idConta, double valorConta, String descConta, int parcela) {
-            this.idConta = idConta;
-            this.valorConta = valorConta;
-            this.descConta = descConta;
-            this.parcela = parcela;
+            this.intIdConta = idConta;
+            this.dblValorConta = valorConta;
+            this.strDescrConta = descConta;
+            this.intParcela = parcela;
         }
 
         public int getIdConta() {
-            return idConta;
+            return intIdConta;
         }
 
         public int getParcela() {
-            return parcela;
+            return intParcela;
         }
 
         public void setParcela(int parcela) {
-            this.parcela = parcela;
+            this.intParcela = parcela;
         }
 
         public void setIdCliente(int idConta) {
-            this.idConta = idConta;
+            this.intIdConta = idConta;
         }
 
         public double getValorConta() {
-            return valorConta;
+            return dblValorConta;
         }
 
         public void setValorConta(double valorConta) {
-            this.valorConta = valorConta;
+            this.dblValorConta = valorConta;
         }
 
         public String getDescConta() {
-            return descConta;
+            return strDescrConta;
         }
 
         public void setDescConta(String descConta) {
-            this.descConta = descConta;
+            this.strDescrConta = descConta;
         }
-
-}
+    }
 }
