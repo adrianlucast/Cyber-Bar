@@ -67,6 +67,7 @@ public class Sistema {
                                         finalizadoLogin = true;
                                     }
                                     break;
+                                    
                                 case 2:
                                     l.Login();
                                     System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
@@ -76,6 +77,7 @@ public class Sistema {
                                         finalizadoLogin = true;
                                     }
                                     break;
+                                    
                                 case 3:
                                     l.vizualizarContas();
                                     System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
@@ -85,6 +87,7 @@ public class Sistema {
                                         finalizadoLogin = true;
                                     }
                                     break;
+                                    
                                 default:
                                     System.out.println("Opção não encontrada!");
                             }
@@ -118,6 +121,7 @@ public class Sistema {
                                         finalizadoVenda = true;
                                     }
                                     break;
+                                    
                                 case 2:
                                     v.BaixaParcela();
                                     System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
@@ -127,6 +131,7 @@ public class Sistema {
                                         finalizadoVenda = true;
                                     }
                                     break;
+                                    
                                 case 3:
                                     v.Venda();
                                     System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
@@ -136,6 +141,7 @@ public class Sistema {
                                         finalizadoVenda = true;
                                     }
                                     break;
+                                    
                                 case 4:
                                     v.CancelaVenda();
                                     System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
@@ -145,6 +151,7 @@ public class Sistema {
                                         finalizadoVenda = true;
                                     }
                                     break;
+                                    
                                 default:
                                     System.out.println("Opção não encontrada!");
                             }
@@ -191,6 +198,7 @@ public class Sistema {
                                         fiEstoque = true;
                                     }
                                     break;
+                                    
                                 case 2:
                                     Scanner ler = new Scanner(System.in);
                                     estoque1.AtualizarProduto();
@@ -201,6 +209,7 @@ public class Sistema {
                                         fiEstoque = true;
                                     }
                                     break;
+                                    
                                 case 3:
                                     estoque1.ExibirProduto();
                                     System.out.println("Você deseja continuar rodando o Averiguar Estoque? (y/n)");
@@ -210,6 +219,7 @@ public class Sistema {
                                         fiEstoque = true;
                                     }
                                     break;
+                                    
                                 case 4:
                                     System.out.println("Informe a quantidade de produtos a serem removidos:");
                                     int quantidade = ant.nextInt();
@@ -221,6 +231,7 @@ public class Sistema {
                                         fiEstoque = true;
                                     }
                                     break;
+                                    
                                 default:
                                     System.out.println("Opção não encontrada!");
                             }
@@ -264,40 +275,33 @@ public class Sistema {
                                 System.out.print("Informe o ID do Cliente: ");
                                 idCl = ll.nextInt();
                                 ll.nextLine();
-
                                 cClientes[idCl].editarCliente();
                                 clientes.add (idCl, cClientes[idCl]);
-
                                 break;
-
+                                
                             case "3" : 
                                 System.out.print("Informe o ID do Cliente: ");
                                 idCl = ll.nextInt();
                                 ll.nextLine();
-
                                 cClientes[idCl].exibirCliente();
-
                                 break;
 
                             case "4" : 
                                 System.out.print("Informe o ID do Cliente: ");
                                 idCl = ll.nextInt();
                                 ll.nextLine();
-
                                 cClientes[idCl].removerCliente();
-
                                 break;
 
                             case "0" :
                                 System.out.println("Saindo...");
-                                opc = "0";
-                                
+                                opc = "0";                          
                                 break;
                                 
                             default : 
                                 System.out.println("Opção Inválida, tente novamente.");
-                                
                                 break;
+                                
                         }
                     } while (!"0".equals(opc));
                     

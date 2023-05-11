@@ -7,102 +7,81 @@ import java.util.Scanner;
  */
 public class Produto {
     Scanner sc = new Scanner(System.in);
-    static private Date dd = new Date();
-    static private int contador = 0;
-    private int prodId;
-    public String prodDescricao;
-    public String prodMarca;
-    public String prodEmbalagem;
-    public double prodEstoque;
-    private double prodValorCusto;
-    private double prodValorVenda;
-    public boolean prodSituacao = false;
-    private String prodDataCadastro;
-    private String prodDataAtualizacao;
+    static private Date dateDd = new Date();
+    static private int intContador = 0;
+    private int intProdId;
+    public String strProdDescricao;
+    public String strProdMarca;
+    public String strProdEmbalagem;
+    public double dblProdEstoque;
+    private double dblProdValorCusto;
+    private double dblProdValorVenda;
+    public boolean blnProdSituacao = false;
+    private String strProdDataCadastro;
+    private String strProdDataAtualizacao;
 //geters e seters para uso em outras classe caso venham a ter necessidade
     /**
      * @return the ProdId
      */
     public int getProdId() {
-        return prodId;
+        return intProdId;
+    }
+
+    public Double getProdValorCusto() {
+        return dblProdValorCusto;
+    }
+
+    public void setProdValorCusto(Double ProdValorCusto) {
+        this.dblProdValorCusto = ProdValorCusto;
+    }
+
+    public Double getProdValorVenda() {
+        return dblProdValorVenda;
+    }
+
+    public void setProdValorVenda(Double ProdValorVenda) {
+        this.dblProdValorVenda = ProdValorVenda;
+    }
+
+    public void setProdDataCadastro(String ProdDataCadastro) {
+        this.strProdDataCadastro = ProdDataCadastro;
+    }
+
+    public void setProdDataAtualizacao(String ProdDataAtualizacao) {
+        this.strProdDataAtualizacao = ProdDataAtualizacao;
+    }
+
+    public static int getContador() {
+        return intContador;
     }
     
-    /**
-     * @return the ProdValorCusto
-     */
-    public Double getProdValorCusto() {
-        return prodValorCusto;
-    }
-
-    /**
-     * @param prodValorCusto the ProdValorCusto to set
-     */
-    public void setProdValorCusto(Double ProdValorCusto) {
-        this.prodValorCusto = ProdValorCusto;
-    }
-
-    /**
-     * @return the ProdValorVenda
-     */
-    public Double getProdValorVenda() {
-        return prodValorVenda;
-    }
-
-    /**
-     * @param ProdValorVenda the ProdValorVenda to set
-     */
-    public void setProdValorVenda(Double ProdValorVenda) {
-        this.prodValorVenda = ProdValorVenda;
-    }
-
-    /**
-     * @param ProdDataCadastro the ProdDataCadastro to set
-     */
-    public void setProdDataCadastro(String ProdDataCadastro) {
-        this.prodDataCadastro = ProdDataCadastro;
-    }
-
-    /**
-     * @param ProdDataAtualizacao the ProdDataAtualizacao to set
-     */
-    public void setProdDataAtualizacao(String ProdDataAtualizacao) {
-        this.prodDataAtualizacao = ProdDataAtualizacao;
-    }
-
-    /**
-     * @return the contador
-     */
-    public static int getContador() {
-        return contador;
-    }
- // fim dos geters e seters   
-    public void Produto(){//adiciona um produto novo(ao banco caso ele existisse
-        contador ++;
-        this.prodId = contador;
+    public void Produto(){
+        intContador ++;
+        this.intProdId = intContador;
         System.out.println("Digite o tipo do produto: ");
-        prodDescricao = sc.next();
+        strProdDescricao = sc.next();
         System.out.println("Digite a marca");
-        prodMarca = sc.next();
+        strProdMarca = sc.next();
         System.out.println("Digite a categoria do produto:\n unitario; \n pacote; \n palet");
-        prodEmbalagem = sc.next();
+        strProdEmbalagem = sc.next();
         System.out.println("Didigite a quantidade do produto a ser estocado: ");
-        prodEstoque = sc.nextDouble();
-        this.prodDataCadastro = "Data cadastro : "+dd;
+        dblProdEstoque = sc.nextDouble();
+        this.strProdDataCadastro = "Data cadastro : "+dateDd;
       
     }
     
-    public void prodAtualizarEstoque(){//funcao onde pelo id selecionado(semifuncional pela falta do banco) atualiza a qnt no banco de um produto
+    public void prodAtualizarEstoque(){
          System.out.println("Digite o Id do produto: ");
          int verificaId = sc.nextInt();
-         if(verificaId == prodId){
-        if(prodEstoque == 0){
-            prodSituacao = true;
+         if(verificaId == intProdId){
+        if(dblProdEstoque == 0){
+            blnProdSituacao = true;
         }
-        if(prodSituacao == true){
+        if(blnProdSituacao == true){
             System.out.println("Aviso!! Estoque vazio");
             System.out.println("Digite o valor a inserir: ");
-            this.prodEstoque += sc.nextDouble();
-             prodDataAtualizacao = "Data update: "+dd;
+            this.dblProdEstoque += sc.nextDouble();
+             strProdDataAtualizacao = "Data update: "+dateDd;
         }else{
             //regiao para retirada de prod do estoque ou inserção
             System.out.println("Digite a operaçao:\n + para soma\n - para subtração");
@@ -110,15 +89,16 @@ public class Produto {
           switch(escolha){
               case '+':
                   System.out.println("Digite o valor a inserir: ");
-            this.prodEstoque += sc.nextDouble();
+            this.dblProdEstoque += sc.nextDouble();
             break;
+            
               case '-':
                   System.out.println("Digite o valor a reduzir: ");
-            this.prodEstoque -= sc.nextDouble();
+            this.dblProdEstoque -= sc.nextDouble();
               default:
                   System.out.println("Operaçao invalida");
           }
-          prodDataAtualizacao = "Data update: "+dd;
+          strProdDataAtualizacao = "Data update: "+dateDd;
         }}else{
              System.out.println("Id invalido");
          } 
