@@ -12,22 +12,21 @@ import java.util.InputMismatchException;
  * @Desenvolvedor: Lucas Pessoli
  */
 public class Vendas {
-    private int idVenda;
-    public int proximoId = 1;
-    private String descricaoVenda;
+    private int intIdVenda;
+    public int intProximoId = 1;
+    private String strDescricaoVenda;
     private ArrayList<Compra> compras;
-    private String nomeProduto;
-    private int parcela;
-    private int parcelasRestantes;
-    public String formaPagamento;
-    public double valorTotal;
-    public Date dateVenda;
+    private String strNomeProduto;
+    private int intParcela;
+    private int intParcelasRestantes;
+    public String strFormaPagamento;
+    public double dblValorTotal;
+    public Date dateDiaVenda;
     
     public Vendas(){
         compras = new ArrayList<Compra>();
     }
-    
-        
+       
     public void RegistrarVenda(){
         Scanner scn = new Scanner(System.in);
         System.out.println("Qual método de pagamento você deseja usar?\n[1] - PIX\n[2] - Cartão de crédito\n[3] - Boleto Bancário\n[4] - Recarga");
@@ -36,20 +35,20 @@ public class Vendas {
             scn.nextLine();
             switch (escolhaC){
                 case 1:
-                    formaPagamento = "PIX";
-                    System.out.println("Você escolheu a forma de pagamento: " + formaPagamento);
+                    strFormaPagamento = "PIX";
+                    System.out.println("Você escolheu a forma de pagamento: " + strFormaPagamento);
                     break;
                 case 2:
-                    formaPagamento = "Cartão de crédito";
-                    System.out.println("Você escolheu a forma de pagamento: " + formaPagamento);
+                    strFormaPagamento = "Cartão de crédito";
+                    System.out.println("Você escolheu a forma de pagamento: " + strFormaPagamento);
                     break;
                 case 3:
-                    formaPagamento = "Boleto bancário";
-                    System.out.println("Você escolheu a forma de pagamento: " + formaPagamento);
+                    strFormaPagamento = "Boleto bancário";
+                    System.out.println("Você escolheu a forma de pagamento: " + strFormaPagamento);
                     break;
                 case 4:
-                    formaPagamento = "Recarga";
-                    System.out.println("Você escolheu a forma de pagamento: " + formaPagamento);
+                    strFormaPagamento = "Recarga";
+                    System.out.println("Você escolheu a forma de pagamento: " + strFormaPagamento);
                     break;
                 default:
                     System.out.println("Escolha uma opção válida!");
@@ -58,7 +57,7 @@ public class Vendas {
             System.out.println("Insira um número válido.");
             System.exit(0);
         }
-        System.out.println(formaPagamento);
+        System.out.println(strFormaPagamento);
         System.out.println("#Informe o nome do cliente: ");
         String nomeDoCliente = scn.nextLine();
         System.out.println("#Insira o CPF do cliente (vazio para não emitir cpf na nota)");
@@ -80,9 +79,9 @@ public class Vendas {
         Date data = new Date();
         Date datt = data;
         String dataVenda = datt.toString();
-        compras.add(new Compra(proximoId, cpfDoCliente,nomeDoCliente, descVenda, nomeDoProduto,parcela,valorProduto, formaPagamento, dataVenda));
-        System.out.println("Conta registrada com sucesso! ID da conta: " + proximoId);
-        proximoId++;
+        compras.add(new Compra(intProximoId, cpfDoCliente,nomeDoCliente, descVenda, nomeDoProduto,parcela,valorProduto, strFormaPagamento, dataVenda));
+        System.out.println("Conta registrada com sucesso! ID da conta: " + intProximoId);
+        intProximoId++;
     }
     
     public void Venda(){
@@ -165,6 +164,7 @@ public class Vendas {
                 System.out.println("Conta não encontrada!");
             }
     }
+    
     public void BaixaParcela(){
         Scanner scn = new Scanner(System.in);
         System.out.println("Informe o ID da compra/venda para baixar a parcela: ");
