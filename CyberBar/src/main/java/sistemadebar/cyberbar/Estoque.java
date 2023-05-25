@@ -1,4 +1,4 @@
-package sistemadebar.cyberbar;
+
 
 import java.util.Date;
 import java.util.Scanner;
@@ -9,6 +9,8 @@ import java.util.Scanner;
  * @desenvolvedor: Gabriella Cristini
  */
 public class Estoque {
+    
+    public String produtos;
     public String strNomeProduto;
     private int intCodigoProduto;
     public double douPrecoProduto;

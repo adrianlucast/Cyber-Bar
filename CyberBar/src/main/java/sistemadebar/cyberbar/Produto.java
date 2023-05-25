@@ -5,7 +5,15 @@ import java.util.Scanner;
  * analista: Alan Henrique Ribeiro;
  * Desenvolvedor:  Felipe Talini
  */
-public class Produto {
+public class Produto extends Estoque {
+
+    public Produto(String produto) {
+       super(produto);
+    }
+    
+    
+    
+    
     Scanner sc = new Scanner(System.in);
     static private Date dateDd = new Date();
     static private int intContador = 0;
