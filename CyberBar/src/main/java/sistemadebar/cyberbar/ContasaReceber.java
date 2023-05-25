@@ -25,7 +25,11 @@ public class ContasaReceber
 
     public void GerarConta(){
         
-        System.out.println("Você deseja: [1] - Vizualiazar contas, [2] - Cadastrar contas");
+        System.out.println("------------------------");
+        System.out.println("1- Vizualiazar contas");
+        System.out.println("2- Cadastrar Contas");
+        System.out.println("-----------------------");
+        
         Scanner dsc = new Scanner(System.in);
         int ddd = dsc.nextInt();
         
@@ -148,7 +152,7 @@ public class ContasaReceber
         this.blnStatus = status;
         if (status) {
             this.strContaBaixa = "Data Baixa: " + new Date();
-        } else {
+        } else {          
             this.strContaBaixa = "";
         }
     }

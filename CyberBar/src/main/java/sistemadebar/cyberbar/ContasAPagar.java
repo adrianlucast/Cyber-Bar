@@ -15,7 +15,7 @@ public class ContasAPagar {
         contas = new ArrayList<Conta>();
     }
 
-    public void adicionar(String nome, String empresa, double valor) {
+    public void adicionarConta(String nome, String empresa, double valor) {
         Conta conta = new Conta();
         conta.setNomeConta(nome);
         conta.setEmpresaConta(empresa);
@@ -23,7 +23,7 @@ public class ContasAPagar {
         contas.add(conta);
     }
 
-    public void pagar(int id) {
+    public void pagarConta(int id) {
         for (int i = 0; i < contas.size(); i++) {
             Conta conta = contas.get(i);
             if (conta.getIdConta() == id) {
@@ -37,14 +37,14 @@ public class ContasAPagar {
         }
     }
 
-    public void listar() {
+    public void listarConta() {
         System.out.println("Lista de contas:");
         for (Conta conta : contas) {
             System.out.println(conta.getIdConta() + " - " + conta.getNomeConta() + " - " + conta.getEmpresaConta() + " - R$" + conta.getValorConta());
             }
     }
 
-    public void procurar(int id) {
+    public void procurarConta(int id) {
         for (Conta conta : contas) {
             if (conta.getIdConta() == id) {
                 System.out.println(conta.getIdConta() + " - " + conta.getNomeConta() + " - " + conta.getEmpresaConta() + " - R$" + conta.getValorConta() + "\n");
@@ -72,21 +72,21 @@ public class ContasAPagar {
     }
 
     private class Conta {
-        private static final int IDCONTA = 1;
-        private static final int PRIMEIRO_ID_CONTA = 1;
-        private static final String NOMECONTA = "";
-        private static final String EMPRESACONTA = "";
-        private static final double VALORCONTA = 0.0;
+        private static final int idContaAPagar = 1;
+        private static final int primeiroIdConta = 1;
+        private static final String nomeContaAPagar = "";
+        private static final String empresaContaAPagar = "";
+        private static final double valorContaAPagar = 0.0;
         private int idConta;
         private String nomeConta;
         private String empresaConta;
         private double valorConta;
 
         public Conta() {
-            this.idConta = IDCONTA + contas.size();
-            this.nomeConta = NOMECONTA;
-            this.empresaConta = EMPRESACONTA;
-            this.valorConta = VALORCONTA;
+            this.idConta = idContaAPagar + contas.size();
+            this.nomeConta = nomeContaAPagar;
+            this.empresaConta = empresaContaAPagar;
+            this.valorConta = valorContaAPagar;
         }
 
         public void setNomeConta(String nomeConta) {

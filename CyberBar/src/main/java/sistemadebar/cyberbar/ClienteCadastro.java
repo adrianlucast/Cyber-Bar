@@ -26,7 +26,7 @@ public class ClienteCadastro {
     private String strRgCliente;
     
     public ClienteCadastro () {
-        System.out.println("\nCADASTRO DE CLIENTES");
+        System.out.println("\nCadastro de Cliente");
         intContadorID++;
         this.intIdCliente = intContadorID;
         
@@ -50,9 +50,8 @@ public class ClienteCadastro {
         if (this.boolAtivo == false) {
             System.out.println("Cliente Inativo");
         } else {
-            System.out.println("\nEDITAR CLIENTE");
+            System.out.println("\nEditar Cliente");
             
-            // alteração dos dados pela edição de clientes
             System.out.print("\nNome....: ");
             this.strNomeCliente = sc.nextLine();
             System.out.print("\nCPF.....: ");
@@ -74,9 +73,8 @@ public class ClienteCadastro {
         if (this.boolAtivo == false) {
             System.out.println("Cliente Inativo");
         } else {
-            System.out.println("\nEXIBIR CLIENTE");
+            System.out.println("\nExibir Cliente");
 
-            // exibição dos dados
             System.out.print("\nNome....: "+this.strNomeCliente);
             System.out.print("\nCPF.....: "+this.strCpfCliente);
             System.out.print("\nRG......: "+this.strRgCliente);
@@ -87,18 +85,19 @@ public class ClienteCadastro {
     }
     
     public void removerCliente () {
-        // validação
         String confirma;
         
-        System.out.print("Confirma a remoção do Cliente?\n"
-                        +"R: ");
+        System.out.print("Confirma a remoção do Cliente?\n" +" (s/n): ");
         confirma = sc.nextLine();
         
         switch (confirma) {
             case "S", "s", "Sim" : this.boolAtivo = false; break;
-            case "N", "n", "Nao" : System.out.println("Operação cancelada"); break;
-            default : System.out.println("Opção Inválida."
-                                        +"Cancelando operação!");
+            case "N", "n", "Nao" : System.out.println("Operação Cancelada"); break;
+            default : System.out.println("Opção Inválida."+"Cancelando Operação!");
         }
+    }
+
+    ClienteCadastro() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

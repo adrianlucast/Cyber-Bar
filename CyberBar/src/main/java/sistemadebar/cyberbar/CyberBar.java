@@ -19,34 +19,35 @@ public class CyberBar {
             System.out.println("------------------------------------------------");
             System.out.print("             Bem-vindo ao Cyber Bar             ");
             System.out.println("\n------------------------------------------------");
-            System.out.println("Por favor, digite qual a função: ");
-            System.out.println("1- Contas a pagar");
-            System.out.println("2- Contas a receber");
+            System.out.println("Por Favor, Digite Qual a Função: ");
+            System.out.println("1- Contas a Pagar");
+            System.out.println("2- Contas a Receber");
             System.out.println("3- Login");
             System.out.println("4- Gerenciar Vendas");
             System.out.println("5- Produtos");
-            System.out.println("6- Averiguar estoque");
+            System.out.println("6- Averiguar Estoque");
             System.out.println("7- Cadastro Cliente");
             System.out.println("0- Sair");
             System.out.println("------------------------------------------------");
             System.out.print("Função: ");
 
             opcaoMenu = scanner.next().charAt(0);
+            scanner.nextLine();
             switch (opcaoMenu) {
                 case '1':
-                    System.out.println("Você escolheu 1- Contas a Pagar!");
+                    System.out.println("Você Escolheu: \n"+ "1- Contas a Pagar!");
                     ContasAPagar contasAPagar = new ContasAPagar();
 
                     boolean sair = false;
                     while (!sair) {
                         System.out.println("------------------------");
-                        System.out.println("1 - Adicionar conta");
-                        System.out.println("2 - Pagar conta");
-                        System.out.println("3 - Listar contas");
-                        System.out.println("4 - Procurar por conta");
-                        System.out.println("5 - Adicionar saldo");
-                        System.out.println("6 - Ver saldo");
-                        System.out.println("0 - Sair");
+                        System.out.println("1- Adicionar conta");
+                        System.out.println("2- Pagar conta");
+                        System.out.println("3- Listar contas");
+                        System.out.println("4- Procurar por conta");
+                        System.out.println("5- Adicionar saldo");
+                        System.out.println("6- Ver saldo");
+                        System.out.println("0- Sair");
                         System.out.println("------------------------\n");
 
                         System.out.print("Opção: ");
@@ -75,27 +76,27 @@ public class CyberBar {
                                 break;
 
                             case "3":
-                                contasAPagar.listarContas();
+                                contasAPagar.listarConta();
                                 System.out.println();
                                 break;
 
                             case "4":
-                                System.out.print("ID da conta a procurar: ");
+                                System.out.print("ID da Conta a Procurar: ");
                                 int idProcurar = scanner.nextInt();
                                 
-                                contasAPagar.procurarPorConta(idProcurar);
+                                contasAPagar.procurarConta(idProcurar);
                                 System.out.println();
                                 break;
 
                             case "5":
-                                System.out.print("Valor a adicionar: ");
+                                System.out.print("Valor a Adicionar: ");
                                 double saldoAdicionar = scanner.nextDouble();
                                 
                                 contasAPagar.adicionarSaldo(saldoAdicionar);
                                 break;
 
                             case "6":
-                                System.out.println("Saldo atual: R$" + contasAPagar.getSaldo() + "\n");
+                                System.out.println("Saldo Atual: R$" + contasAPagar.getSaldo() + "\n");
                                 break;
                                
                             case "0":
@@ -103,7 +104,7 @@ public class CyberBar {
                                 break;
                                 
                             default:
-                                System.out.println("Opção inválida!\n");
+                                System.out.println("Opção Inválida!\n");
                                 break;
                         }
                     }
@@ -113,13 +114,13 @@ public class CyberBar {
                     break;
 
                 case '2':
-                    System.out.println("Você escolheu 2-contas a receber!");
+                    System.out.println("Você Escolheu: \n2- Contas a Receber!");
                     ContasaReceber contaReceber = new ContasaReceber();
                     boolean finalizadoContaR = false;
                     
                     while (finalizadoContaR == false){
                         contaReceber.GerarConta();
-                        System.out.println("Deseja continuar usando o ContasAReceber? (y/n)");
+                        System.out.println("Deseja Continuar Usando o MENU Contas a Receber? (y/n)");
                         String rss = scanner.next();
                         if(rss.equalsIgnoreCase("y")){
                             
@@ -140,15 +141,19 @@ public class CyberBar {
                     finalizadoLogin = false;
                     
                     while (finalizadoLogin == false) {
-                        System.out.println("\nVocê escolheu 3-Login!");
-                        System.out.println("Você deseja:\n[1] - REGISTRAR\n[2] - LOGAR(\n[3] - LISTAR CONTA(S)");
+                        System.out.println("\nVocê escolheu: \n"+"3- Login!");
+                        System.out.println("------------------------");
+                        System.out.println("1- Registrar");
+                        System.out.println("2- Logar");
+                        System.out.println("3- Listar Contas");
+                        System.out.println("------------------------\n");
                         
                         try {
                             String escolha = scanner.nextLine();
                             switch (escolha) {
                                 case "1":
                                     login.Registrar();
-                                    System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
+                                    System.out.println("Você Deseja Continuar Usando o MENU Login? (y/n)");
                                     continuarLogin = scanner.next();
                                     
                                     if (continuarLogin.equalsIgnoreCase("Y")) {
@@ -159,7 +164,7 @@ public class CyberBar {
                                     
                                 case "2":
                                     login.Login();
-                                    System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
+                                    System.out.println("Você Deseja Continuar Usando o MENU Login? (y/n)");
                                     continuarLogin = scanner.next();
                                     if (continuarLogin.equalsIgnoreCase("Y")) {
                                     } else {
@@ -169,7 +174,7 @@ public class CyberBar {
                                     
                                 case "3":
                                     login.vizualizarContas();
-                                    System.out.println("Você deseja continuar rodando o LOGIN? (y/n)");
+                                    System.out.println("Você Deseja Continuar Usando o MENU Login? (y/n)");
                                     continuarLogin = scanner.next();
                                     if (continuarLogin.equalsIgnoreCase("Y")) {
                                     } else {
@@ -178,11 +183,11 @@ public class CyberBar {
                                     break;
                                     
                                 default:
-                                    System.out.println("Opção não encontrada!");
+                                    System.out.println("Opção Não Encontrada!");
                             }
                             
                         } catch (InputMismatchException exception) {
-                            System.out.println("Informe um número válido!");
+                            System.out.println("Informe um Número Válido!");
                         }
                     }
                     if (continuarExecucao() == '0') {
@@ -199,14 +204,19 @@ public class CyberBar {
                     finalizadoVenda = false;
                     Scanner antiBug = new Scanner(System.in);
                     while (finalizadoVenda == false) {
-                        System.out.println("\nVocê escolheu 4-Gerenciar Vendas!");
-                        System.out.println("Você deseja:\n[1] - REGISTRAR VENDA\n[2] - BAIXAR PARCELA(S) \n[3] - LISTAR VENDA(S)\n[4] - CANCELAR VENDA(S)");
+                        System.out.println("\nVocê escolheu \n4- Gerenciar Vendas!");
+                        System.out.println("------------------------");
+                        System.out.println("1- Registrar Vendas");
+                        System.out.println("2- Dar Baixa em Parcela(s)");
+                        System.out.println("3- Listar Venda(s)");
+                        System.out.println("4- Cancelar Venda(s)");
+                        System.out.println("------------------------\n");
                         try {
                             String escolha1 = scanner.nextLine();
                             switch (escolha1) {
                                 case "1":
                                     v.RegistrarVenda();
-                                    System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
+                                    System.out.println("Você Deseja Continuar Usando o Gerenciamento de Vendas? (y/n)");
                                     e1 = antiBug.nextLine();
                                     if (e1.equalsIgnoreCase("Y")) {
                                     } else {
@@ -216,7 +226,7 @@ public class CyberBar {
                                     
                                 case "2":
                                     v.BaixaParcela();
-                                    System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
+                                    System.out.println("Você Deseja Continuar Usando o Gerenciamento de Vendas? (y/n)");
                                     e1 = antiBug.nextLine();
                                     if (e1.equalsIgnoreCase("Y")) {
                                     } else {
@@ -226,7 +236,7 @@ public class CyberBar {
                                     
                                 case "3":
                                     v.Venda();
-                                    System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
+                                    System.out.println("Você Deseja Continuar Usando o Gerenciamento de Vendas? (y/n)");
                                     e1 = antiBug.nextLine();
                                     if (e1.equalsIgnoreCase("Y")) {
                                     } else {
@@ -236,7 +246,7 @@ public class CyberBar {
                                     
                                 case "4":
                                     v.CancelaVenda();
-                                    System.out.println("Você deseja continuar rodando o Gerenciamento de vendas? (y/n)");
+                                    System.out.println("Você Deseja Continuar Usando o Gerenciamento de Vendas? (y/n)");
                                     e1 = antiBug.nextLine();
                                     if (e1.equalsIgnoreCase("Y")) {
                                     } else {
@@ -244,10 +254,10 @@ public class CyberBar {
                                     }
                                     break;
                                 default:
-                                    System.out.println("Opção não encontrada!");
+                                    System.out.println("Opção Não Encontrada!");
                             }
                         } catch (InputMismatchException exception) {
-                            System.out.println("ERRO: Informe um número válido!");
+                            System.out.println("ERRO: Informe um Número Válido!");
                         }
                     }
                     if (continuarExecucao() == '0') {
@@ -257,19 +267,22 @@ public class CyberBar {
                     break;
 
                 case '5':
-                    System.out.println("Você escolheu 5-Produtos!");
+                    System.out.println("Você escolheu \n5- Produtos!");
                     Produto pp = new Produto();
-                    System.out.println("Digite o que deseja fazer:\n 1- para adicionar produto\n 2- para atualizar o estoque");//inicia sistema estoque
+                        System.out.println("------------------------");
+                        System.out.println("1- Adicionar produto");
+                        System.out.println("2- Atualizar o estoque");
+                        System.out.println("------------------------\n");
                     int numCod = scanner.nextInt();
                     switch (numCod) {
-                        case 1://caso add produto
+                        case 1:
                             pp.Produto();
                             break;
-                        case 2://caso atualizar qnt de produto no estoque
+                        case 2:
                             pp.prodAtualizarEstoque();
                             break;
-                        default://caso invalido
-                            System.out.println("Valor invalido");
+                        default:
+                            System.out.println("Valor Invalido");
                             break;
                     }
                     
@@ -284,19 +297,20 @@ public class CyberBar {
                     boolean fecharEstoque = false;
                     Scanner ant = new Scanner(System.in);
                     while (fecharEstoque == false) {
-                        System.out.println("Você escolheu 6-Averiguar estoque!");
-                        System.out.println("Escolha qual função você deseja execultar:");
-                        System.out.println("1 - ADICIONAR PRODUTO AO ESTOQUE\n"
-                                + "2 - ATUALIZAR PRODUTO\n"
-                                + "3 - LISTAR PRODUTO\n"
-                                + "4 - EXCLUIR PRODUTO");
+                        System.out.println("Você escolheu \n6- Averiguar Estoque!");
+                        System.out.println("------------------------");
+                        System.out.println("1- Adicionar Produto Ao Estoque");
+                        System.out.println("2- Atualizar O Produto ");
+                        System.out.println("3- Listar Produto ");
+                        System.out.println("4- Excluir Produto ");
+                        System.out.println("------------------------\n");
 
                         try {
                             String escolha3 = scanner.nextLine();
                             switch (escolha3) {
                                 case "1":
                                     estoque1.AdicionarProduto();
-                                    System.out.println("Você deseja continuar rodando o Averiguar Estoque? (y/n)");
+                                    System.out.println("Você Deseja Continuar Rodando o Averiguar Estoque? (y/n)");
                                     e2 = ant.nextLine();
                                     if (e2.equalsIgnoreCase("Y")) {
                                     } else {
@@ -307,7 +321,7 @@ public class CyberBar {
                                 case "2":
                                     Scanner ler = new Scanner(System.in);
                                     estoque1.AtualizarProduto();
-                                    System.out.println("Você deseja continuar rodando o Averiguar Estoque? (y/n)");
+                                    System.out.println("Você Deseja Continuar Rodando o Averiguar Estoque? (y/n)");
                                     e2 = ant.nextLine();
                                     
                                     if (e2.equalsIgnoreCase("Y")) {
@@ -318,7 +332,7 @@ public class CyberBar {
                                     
                                 case "3":
                                     estoque1.ExibirProduto();
-                                    System.out.println("Você deseja continuar rodando o Averiguar Estoque? (y/n)");
+                                    System.out.println("Você Deseja Continuar Rodando o Averiguar Estoque? (y/n)");
                                     e2 = ant.nextLine();
                                     
                                     if (e2.equalsIgnoreCase("Y")) {
@@ -328,10 +342,10 @@ public class CyberBar {
                                     break;
                                     
                                 case "4":
-                                    System.out.println("Informe a quantidade de produtos a serem removidos:");
+                                    System.out.println("Informe a Quantidade de Produtos a Serem Removidos:");
                                     int quantidade = ant.nextInt();
                                     estoque1.RemoverProduto(quantidade);
-                                    System.out.println("Você deseja continuar rodando o Averiguar Estoque? (y/n)");
+                                    System.out.println("Você Deseja Continuar Rodando o Averiguar Estoque? (y/n)");
                                     e2 = ant.nextLine();
                                     
                                     if (e2.equalsIgnoreCase("Y")) {
@@ -341,10 +355,10 @@ public class CyberBar {
                                     break;
                                     
                                 default:
-                                    System.out.println("Opção não encontrada!");
+                                    System.out.println("Opção Não Encontrada!");
                             }
                         } catch (InputMismatchException exception) {
-                            System.out.println("ERRO: Informe um número válido!");
+                            System.out.println("ERRO: Informe Um Número Válido!");
                         }
                     }
                     if (continuarExecucao() == '0') {
@@ -352,29 +366,31 @@ public class CyberBar {
                     }
                     break;
                 case '7':
-                    System.out.println("Você escolheu 7- Cadastrar Cliente!");
-                    ArrayList<ClienteCadastro> clientes = new ArrayList<ClienteCadastro>(); // arrayList onde ficam salvos os clientes
-                    ClienteCadastro cClientes[] = new ClienteCadastro[clientes.size()]; // Inicialização de um array para organizar os clientes
+                    System.out.println("Você escolheu \n7- Cadastrar Cliente!");
+                    ArrayList<ClienteCadastro> clientes = new ArrayList<ClienteCadastro>(); 
+                    ClienteCadastro cClientes[] = new ClienteCadastro[clientes.size()]; 
                     String opc;
                     
                     do {
-                        // menu da classe
-                        System.out.println("1 - CADASTRAR NOVO CLIENTE\n"
-                                          +"2 - EDITAR CLIENTE\n"
-                                          +"3 - MOSTRAR CADASTRO DE CLIENTE\n"
-                                          +"4 - EXCLUIR CLIENTE\n"
-                                          +"0 - SAIR");
+                        System.out.println("------------------------");
+                        System.out.println("1- Cadastrar Novo Cliente");
+                        System.out.println("2- Editar Cliente");
+                        System.out.println("3- Mostrar Cadastro de Cliente ");
+                        System.out.println("4- Excluir Cliente ");
+                        System.out.println("0- Sair ");                        
+                        System.out.println("------------------------\n");
 
                         opc = scanner.nextLine();
 
-                        int idxCliente = 0; // op 1
-                        int idCl; // op 2, op 3 e op 4
+                        int idxCliente = 0; 
+                        int idCl; 
                         switch (opc) {
                             case "1" : 
-                                idxCliente++; // é o Indice do Cliente
+                                idxCliente++; 
 
-                                cClientes[idxCliente].adicionarCliente(); // função para cadastrar novo cliente
-                                clientes.add((idxCliente-1),cClientes[idxCliente]); // salvando no array list pra ser encontrado depois
+                                ClienteCadastro cliente = new ClienteCadastro();
+                                cClientes[idxCliente] = cliente;
+                                clientes.add((idxCliente-1),cClientes[idxCliente]); 
 
                                 break;
 
@@ -413,7 +429,7 @@ public class CyberBar {
                                 break;
                                 
                             default : 
-                                System.out.println("Opção Inválida, tente novamente.");
+                                System.out.println("Opção Inválida, Tente Novamente.");
                                 
                                 break;
                         }
@@ -426,12 +442,12 @@ public class CyberBar {
 
                 case '0':
                     System.out.println("------------------------------------------------");
-                    System.out.println("OBRIGADO POR UTILIZAR O CYBERBAR!");
-                    System.out.println(" ");
+                    System.out.println("Obrigado Por Utilizar o CyberBAR!");
+                    System.out.println("------------------------------------------------");
                     break;
 
                 default:
-                    System.out.println("Opção invalida, escolha novamente.");
+                    System.out.println("Opção Invalida, Escolha Novamente.");
                     if (continuarExecucao() == '0') {
                         opcaoMenu = '0';
                     }
@@ -443,7 +459,7 @@ public class CyberBar {
     public static char continuarExecucao() {
         String esperar;
         char retorno = '.';
-        System.out.print("Continuar usando o sistema (y/n): ");
+        System.out.print("Continuar Usando o Sistema (y/n): ");
         esperar = scanner.nextLine();
         if ("y".equals(esperar)) {
         } else {
