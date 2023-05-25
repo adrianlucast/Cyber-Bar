@@ -5,32 +5,43 @@ import java.util.Scanner;
  * analista: Alan Henrique Ribeiro;
  * Desenvolvedor:  Felipe Talini
  */
-public class Produto extends Estoque {
-
-    public Produto(String produto) {
-       super(produto);
-    }
-    
-    
-    
+public class Produto {
+  
     
     Scanner sc = new Scanner(System.in);
     static private Date dateDd = new Date();
     static private int intContador = 0;
-    private int intProdId;
+    public int intProdId;
     public String strProdDescricao;
     public String strProdMarca;
-    public String strProdEmbalagem;
+     public String strProdFornecedor;
     public double dblProdEstoque;
-    private double dblProdValorCusto;
-    private double dblProdValorVenda;
-    public boolean blnProdSituacao = false;
-    private String strProdDataCadastro;
-    private String strProdDataAtualizacao;
+    public String strStatusProduto;
+    public int intQuantidadeMaximaProduto;
+    public double dblProdValorCusto;
+    public double dblProdValorVenda;
+    public String strProdDataCadastro;
+    public String strProdDataAtualizacao;
 //geters e seters para uso em outras classe caso venham a ter necessidade
-    /**
-     * @return the ProdId
-     */
+    
+    
+    
+   
+
+    public Produto(int intProdId, String strProdDescricao, String strProdMarca, String strProdFornecedor, double dblProdEstoque, String strStatusProduto, int intQuantidadeMaximaProduto, double dblProdValorCusto, double dblProdValorVenda, String strProdDataCadastro, String strProdDataAtualizacao) {
+        this.intProdId = intProdId;
+        this.strProdDescricao = strProdDescricao;
+        this.strProdMarca = strProdMarca;
+        this.strProdFornecedor = strProdFornecedor;
+        this.dblProdEstoque = dblProdEstoque;
+        this.strStatusProduto = strStatusProduto;
+        this.intQuantidadeMaximaProduto = intQuantidadeMaximaProduto;
+        this.dblProdValorCusto = dblProdValorCusto;
+        this.dblProdValorVenda = dblProdValorVenda;
+        this.strProdDataCadastro = strProdDataCadastro;
+        this.strProdDataAtualizacao = strProdDataAtualizacao;
+    }
+
     public int getProdId() {
         return intProdId;
     }
@@ -62,54 +73,4 @@ public class Produto extends Estoque {
     public static int getContador() {
         return intContador;
     }
-    
-    public void Produto(){
-        intContador ++;
-        this.intProdId = intContador;
-        System.out.println("Digite o tipo do produto: ");
-        strProdDescricao = sc.next();
-        System.out.println("Digite a marca");
-        strProdMarca = sc.next();
-        System.out.println("Digite a categoria do produto:\n unitario; \n pacote; \n palet");
-        strProdEmbalagem = sc.next();
-        System.out.println("Didigite a quantidade do produto a ser estocado: ");
-        dblProdEstoque = sc.nextDouble();
-        this.strProdDataCadastro = "Data cadastro : "+dateDd;
-      
-    }
-    
-    public void prodAtualizarEstoque(){
-         System.out.println("Digite o Id do produto: ");
-         int verificaId = sc.nextInt();
-         if(verificaId == intProdId){
-        if(dblProdEstoque == 0){
-            blnProdSituacao = true;
-        }
-        if(blnProdSituacao == true){
-            System.out.println("Aviso!! Estoque vazio");
-            System.out.println("Digite o valor a inserir: ");
-            this.dblProdEstoque += sc.nextDouble();
-             strProdDataAtualizacao = "Data update: "+dateDd;
-        }else{
-            //regiao para retirada de prod do estoque ou inserção
-            System.out.println("Digite a operaçao:\n + para soma\n - para subtração");
-           char escolha = sc.next().charAt(1);
-          switch(escolha){
-              case '+':
-                  System.out.println("Digite o valor a inserir: ");
-            this.dblProdEstoque += sc.nextDouble();
-            break;
-            
-              case '-':
-                  System.out.println("Digite o valor a reduzir: ");
-            this.dblProdEstoque -= sc.nextDouble();
-              default:
-                  System.out.println("Operaçao invalida");
-          }
-          strProdDataAtualizacao = "Data update: "+dateDd;
-        }}else{
-             System.out.println("Id invalido");
-         } 
-    }
-    
 }
