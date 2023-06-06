@@ -37,37 +37,37 @@ public class ContasaReceber
             case 1:
                 if (conta.size()>0){
                     for(ContasR c : conta){
-                        System.out.println("id da conta: " + c.getIdConta());
-                        System.out.println("Nome/Descrição da conta: " + c.getDescConta());
-                        System.out.println("Valor da conta: : " + c.getValorConta());
-                        System.out.println("Parcelas da conta: " + c.getParcela());
-                        System.out.println("Imposto aplicado: " + dblImposto*100 +" reais!");
+                        System.out.println("ID da Conta: " + c.getIdConta());
+                        System.out.println("Nome/Descrição da Conta: " + c.getDescConta());
+                        System.out.println("Valor da Conta: : " + c.getValorConta());
+                        System.out.println("Parcelas da Conta: " + c.getParcela());
+                        System.out.println("Imposto Aplicado: " + dblImposto*100 +" reais!");
                         System.out.println("\n");
                     }
                 }else{
-                        System.out.println("nenhuma conta encontrada no sistema!");
+                        System.out.println("Nenhuma Conta Encontrada no Sistema!");
                 }
                 break;
                 
             case 2:
                 Scanner s = new Scanner(System.in);
-                System.out.println("Informe o nome/descrição da conta!");
+                System.out.println("Informe o Nome/Descrição da Conta!");
                 String descVenda = s.nextLine();
                 
-                System.out.println("Informe o valor da conta: ");
+                System.out.println("Informe o Valor da Conta: ");
                 double valor = s.nextDouble();
                 
-                System.out.println("Você deseja parcelar a conta? (y/n)");
+                System.out.println("Você Deseja Parcelar a Conta? (y/n)");
                 String r = s.next();
                 
                 if (r.equalsIgnoreCase("y")){
-                    System.out.println("Informe o número de parcelas: ");
+                    System.out.println("Informe o Número de Parcelas: ");
                     intNumParcela = s.nextInt();
                 }else{
                     System.out.println("Prosseguindo...");
                 }
                 
-                System.out.println("Taxa de imposto de: " + dblImposto*100 + " Reais aplicada! Totalizando:" + imposto(valor));
+                System.out.println("Taxa de Pmposto de: " + dblImposto*100 + " Reais aplicada! Totalizando: " + imposto(valor));
                 conta.add(new ContasR(intPorxId, valor, descVenda, intNumParcela));
                 intPorxId++;
                 System.out.println("=======Conta cadastrada com sucesso!=======");
@@ -103,7 +103,7 @@ public class ContasaReceber
     }
 
     public void gerarConta() {
-        System.out.println("Conta gerada com sucesso.");
+        System.out.println("Conta Gerada com Sucesso.");
     }
 
     public void pullCliente() {
