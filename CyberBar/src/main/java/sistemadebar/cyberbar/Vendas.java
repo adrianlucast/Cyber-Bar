@@ -29,49 +29,49 @@ public class Vendas {
        
     public void RegistrarVenda(){
         Scanner scn = new Scanner(System.in);
-        System.out.println("Qual método de pagamento você deseja usar?\n[1] - PIX\n[2] - Cartão de crédito\n[3] - Boleto Bancário\n[4] - Recarga");
+        System.out.println("Qual Método de Pagamento Você Deseja Usar?\n1- PIX\n2- Cartão de crédito\n3- Boleto Bancário\n4- Recarga");
         try{
             int escolhaC = scn.nextInt();
             scn.nextLine();
             switch (escolhaC){
                 case 1:
                     strFormaPagamento = "PIX";
-                    System.out.println("Você escolheu a forma de pagamento: " + strFormaPagamento);
+                    System.out.println("Você Escolheu a Forma de Pagamento: " + strFormaPagamento);
                     break;
                 case 2:
                     strFormaPagamento = "Cartão de crédito";
-                    System.out.println("Você escolheu a forma de pagamento: " + strFormaPagamento);
+                    System.out.println("Você Escolheu a Forma de Pagamento: " + strFormaPagamento);
                     break;
                 case 3:
                     strFormaPagamento = "Boleto bancário";
-                    System.out.println("Você escolheu a forma de pagamento: " + strFormaPagamento);
+                    System.out.println("Você Escolheu a Forma de Pagamento: " + strFormaPagamento);
                     break;
                 case 4:
                     strFormaPagamento = "Recarga";
-                    System.out.println("Você escolheu a forma de pagamento: " + strFormaPagamento);
+                    System.out.println("Você Escolheu a Forma de Pagamento: " + strFormaPagamento);
                     break;
                 default:
-                    System.out.println("Escolha uma opção válida!");
+                    System.out.println("Escolha uma Opção Válida!");
             }
         }catch(InputMismatchException exception){
-            System.out.println("Insira um número válido.");
+            System.out.println("Insira um Número Válido.");
             System.exit(0);
         }
         System.out.println(strFormaPagamento);
-        System.out.println("#Informe o nome do cliente: ");
+        System.out.println("Informe o Nome do Cliente: ");
         String nomeDoCliente = scn.nextLine();
-        System.out.println("#Insira o CPF do cliente (vazio para não emitir cpf na nota)");
+        System.out.println("Insira o CPF do Cliente (Vazio Para não Emitir CPF na Nota)");
         String cpfDoCliente = scn.nextLine();
         if(cpfDoCliente.equals("")|| cpfDoCliente.equals(null) || cpfDoCliente.equals(" ")){
-            cpfDoCliente = "Não exibido por prefêrencia do cliente.";
+            cpfDoCliente = "Não Exibido por Prefêrencia do Cliente.";
         }
-        System.out.println("#Informe a descrição da venda: ");
+        System.out.println("Informe a Descrição da Venda: ");
         String descVenda = scn.nextLine();
-        System.out.println("#Nome do(s) produto(s) comprado(s): ");
+        System.out.println("Nome do(s) Produto(s) Comprado(s): ");
         String nomeDoProduto = scn.nextLine();
-        System.out.println("*Valor do produto comprado: ");
+        System.out.println("*Valor do Produto Comprado: ");
         int valorProduto = scn.nextInt();
-        System.out.println("*Parcelar em: (limite: 12 parcelas, caso for á vista deixar vazio) ");
+        System.out.println("*Parcelar em: (Limite: 12 parcelas, Caso Optar por á Vista Deixar Vazio) ");
         int parcela = scn.nextInt();
         if (parcela > 12 ){
             parcela = 12;
@@ -80,50 +80,50 @@ public class Vendas {
         Date datt = data;
         String dataVenda = datt.toString();
         compras.add(new Compra(intProximoId, cpfDoCliente,nomeDoCliente, descVenda, nomeDoProduto,parcela,valorProduto, strFormaPagamento, dataVenda));
-        System.out.println("Conta registrada com sucesso! ID da conta: " + intProximoId);
+        System.out.println("Conta Registrada com Sucesso! ID da Conta: " + intProximoId);
         intProximoId++;
     }
     
     public void Venda(){
         Scanner scn = new Scanner(System.in);
-        System.out.println("Você deseja:\n[1] - Exibir todas as vendas já realizadas\n[2] - Buscar uma venda por ID");
+        System.out.println("Você Deseja:\n1- Exibir Todas as Vendas já Realizadas\n2- Buscar uma Venda por ID");
         try{
             int escolhaC = scn.nextInt();
             switch(escolhaC){
                 case 1:
                     for(Compra compra : compras){
-                    System.out.println("\n...EMITINDO NOTA FISCAL...");
-                    System.out.println("ID DA COMPRA: " + compra.getIdCompra());
+                    System.out.println("\n...Emitindo Nota Fiscal...");
+                    System.out.println("ID da Compra: " + compra.getIdCompra());
                     System.out.println("CPF: " + compra.getCpfCliente());
-                    System.out.println("Nome do cliente: " + compra.getNomeProduto());
-                    System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
-                    System.out.println("Nome do(s) produto(s):" + compra.getNomeProduto());
-                    System.out.println("Valor do produto: " + compra.getValorProduto());
-                    System.out.println("Parcelas restantes do produto: " + compra.getParcela());
-                    System.out.println("Forma de pagamento utilizada: " + compra.getFormaPagamento());
-                    System.out.println("Data da venda: " + compra.getDateVenda());
+                    System.out.println("Nome do Cliente: " + compra.getNomeProduto());
+                    System.out.println("Descrição da Venda: " + compra.getDescricaoVenda());
+                    System.out.println("Nome do(s) Produto(s):" + compra.getNomeProduto());
+                    System.out.println("Valor do Produto: " + compra.getValorProduto());
+                    System.out.println("Parcelas Restantes do Produto: " + compra.getParcela());
+                    System.out.println("Forma de Pagamento Utilizada: " + compra.getFormaPagamento());
+                    System.out.println("Data da Venda: " + compra.getDateVenda());
             }
                     break;
                 case 2:
-                    System.out.println("Informe o ID da sua venda:");
+                    System.out.println("Informe o ID da sua Venda:");
                     int idd = scn.nextInt();
                     for(Compra compra : compras){
                         if(compra.getIdCompra()== idd){
-                            System.out.println("...EMITINDO NOTA FISCAL...");
-                            System.out.println("ID DA COMPRA: " + compra.getIdCompra());
+                            System.out.println("...Emitindo Nota Fiscal...");
+                            System.out.println("ID da Compra: " + compra.getIdCompra());
                             System.out.println("CPF: " + compra.getCpfCliente());
-                            System.out.println("Nome do cliente: " + compra.getNomeProduto());
-                            System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
-                            System.out.println("Nome do(s) produto(s):" + compra.getNomeProduto());
-                            System.out.println("Valor do produto: " + compra.getValorProduto());
-                            System.out.println("Parcelas restantes do produto: " + compra.getParcela());
-                            System.out.println("Forma de pagamento utilizada: " + compra.getFormaPagamento());
-                            System.out.println("Data da venda: " + compra.getDateVenda());
+                            System.out.println("Nome do Cliente: " + compra.getNomeProduto());
+                            System.out.println("Descrição da Venda: " + compra.getDescricaoVenda());
+                            System.out.println("Nome do(s) Produto(s):" + compra.getNomeProduto());
+                            System.out.println("Valor do Produto: " + compra.getValorProduto());
+                            System.out.println("Parcelas Restantes do Produto: " + compra.getParcela());
+                            System.out.println("Forma de Pagamento Utilizada: " + compra.getFormaPagamento());
+                            System.out.println("Data da Venda: " + compra.getDateVenda());
                         }
                     }
             }
         }catch(InputMismatchException exception){
-            System.out.println("Informe um número válido.");
+            System.out.println("Informe um Número Válido.");
             System.exit(0);
     }
         }
@@ -131,29 +131,29 @@ public class Vendas {
     public void CancelaVenda(){
         Scanner scn = new Scanner(System.in);
         Scanner antibug2 = new Scanner(System.in);
-        System.out.println("Informe o ID da conta a ser deletada: ");
+        System.out.println("Informe o ID da Conta a ser Deletada: ");
         int id = scn.nextInt();
         boolean encontrado = false;
             for(Compra compra : compras){
                 if (compra.getIdCompra() == id){
                     encontrado = true;
-                    System.out.println("Conta encontrada! Informações abaixo:");
-                    System.out.println("ID DA COMPRA: " + compra.getIdCompra());
+                    System.out.println("Conta Encontrada! Informações Abaixo:");
+                    System.out.println("ID da Compra: " + compra.getIdCompra());
                     System.out.println("CPF: " + compra.getCpfCliente());
-                    System.out.println("Nome do cliente: " + compra.getNomeProduto());
-                    System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
-                    System.out.println("Nome do(s) produto(s):" + compra.getNomeProduto());
-                    System.out.println("Valor do produto: " + compra.getValorProduto());
-                    System.out.println("Parcelas restantes do produto: " + compra.getParcela());
-                    System.out.println("Forma de pagamento utilizada: " + compra.getFormaPagamento());
-                    System.out.println("Data da venda: " + compra.getDateVenda());
+                    System.out.println("Nome do Cliente: " + compra.getNomeProduto());
+                    System.out.println("Descrição da Venda: " + compra.getDescricaoVenda());
+                    System.out.println("Nome do(s) Produto(s):" + compra.getNomeProduto());
+                    System.out.println("Valor do Produto: " + compra.getValorProduto());
+                    System.out.println("Parcelas Restantes do Produto: " + compra.getParcela());
+                    System.out.println("Forma de Pagamento Utilizada: " + compra.getFormaPagamento());
+                    System.out.println("Data da Venda: " + compra.getDateVenda());
                     System.out.println("===========================");
-                    System.out.println("Para ter certeza que quer cancelar a venda, digite Y, para cancelar digite N ...");
+                    System.out.println("Digite Y para Cancelar a Venda, N para Voltar");
                     String res = antibug2.nextLine();
                     if(res.equalsIgnoreCase("Y")){
                         int i = compras.indexOf(compra);
                         compras.remove(i);
-                        System.out.println("Conta cancelada/removida do sistema.");
+                        System.out.println("Conta Cancelada/Removida do Sistema.");
                     }else if(res.equalsIgnoreCase("N")){
                         System.out.println("Saindo.....");
                     }
@@ -161,26 +161,26 @@ public class Vendas {
                 }
             }
             if(!encontrado){
-                System.out.println("Conta não encontrada!");
+                System.out.println("Conta não Encontrada!");
             }
     }
     
     public void BaixaParcela(){
         Scanner scn = new Scanner(System.in);
-        System.out.println("Informe o ID da compra/venda para baixar a parcela: ");
+        System.out.println("Informe o ID da Compra/Venda para Baixar a Parcela: ");
         int id = scn.nextInt();
         boolean encontrado = false;
             for(Compra compra : compras){
                 if (compra.getIdCompra() == id){
                     encontrado = true;
-                    System.out.println("Conta encontrada! Informações abaixo:");
+                    System.out.println("Conta Encontrada! Informações Abaixo:");
                     System.out.println("CPF: " + compra.getCpfCliente());
-                    System.out.println("Nome do cliente: " + compra.getNomeProduto());
-                    System.out.println("Descrição da venda: " + compra.getDescricaoVenda());
-                    System.out.println("Nome do(s) produto(s):" + compra.getNomeProduto());
-                    System.out.println("Valor do produto: " + compra.getValorProduto());
-                    System.out.println("Parcelas restantes do produto: " + compra.getParcela());
-                    System.out.println("Informe Quantas parcelas você deseja baixar: ");
+                    System.out.println("Nome do Cliente: " + compra.getNomeProduto());
+                    System.out.println("Descrição da Venda: " + compra.getDescricaoVenda());
+                    System.out.println("Nome do(s) Produto(s):" + compra.getNomeProduto());
+                    System.out.println("Valor do Produto: " + compra.getValorProduto());
+                    System.out.println("Parcelas Restantes do Produto: " + compra.getParcela());
+                    System.out.println("Informe Quantas Parcelas você Deseja Baixar: ");
                     int res = scn.nextInt();
                     if(res < 0 ){
                         res = 0;
@@ -189,15 +189,15 @@ public class Vendas {
                         int parcelaSalva = compra.getParcela();
                         compra.setParcela(compra.getParcela() - res);
                         if(compra.getParcela() <=0){
-                            System.out.println("Todas as parcelas foram baixadas! Saindo por um total de: " + ((compra.getValorProduto() / res) * res) + "");
+                            System.out.println("Todas as Parcelas foram Baixadas! Saindo por um Total de: " + ((compra.getValorProduto() / res) * res) + "");
                         }else{
-                            System.out.println("Parcela(s) baixada(s)! Parcelas atuais: " + compra.getParcela() + ", você terá que pagar: " + ((compra.getValorProduto() / parcelaSalva) * res));
+                            System.out.println("Parcela(s) Baixada(s)! Parcelas Atuais: " + compra.getParcela() + ", Você terá que Pagar: " + ((compra.getValorProduto() / parcelaSalva) * res));
                         }
                     break;
                 }
             }
             if(!encontrado){
-                System.out.println("Conta não encontrada!");
+                System.out.println("Conta não Encontrada!");
             }
         }
     }
