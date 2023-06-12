@@ -1,50 +1,92 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package sistemadebar.cyberbar;
 
-import java.util.Date;
 import java.util.Scanner;
 
 /**
- *
- * @Analista: Vinicius Sempkoski
- * @desenvolvedor: Gabriella Cristini
- * @alteração Gabriella Cristini,Matheus Schmidt
+ * @Desenvolvedor: Gabriella Cristini Galvão
  */
-public class Estoque extends Produto  {
+public class Estoque extends Produtos{
+    Scanner ler = new Scanner(System.in);
     
-    public Estoque(int intProdId, String strProdDescricao, String strProdMarca, String strProdEmbalagem, double dblProdEstoque, String strStatusProduto, int intQuantidadeMaximaProduto, double dblProdValorCusto, double dblProdValorVenda, String strProdDataCadastro, String strProdDataAtualizacao, Date dateDataEntradaProduto, String strDataValidadeProduto, int intQuantidadeProduto) {
-        super(intProdId, strProdDescricao, strProdMarca, strProdEmbalagem, dblProdEstoque, strStatusProduto, intQuantidadeMaximaProduto, dblProdValorCusto, dblProdValorVenda, strProdDataCadastro, strProdDataAtualizacao);
-    }
-    
-    public void menu(){
+    public void menuEstoque(){
         String escolha;
-        System.out.println("Qual a opção que voce deseja:\n(0)Cadastro Produto\n(1)Atualizar Produto\n(2)Exibir Produto\n(3)Remover Produto");
-        escolha  = ler.nextLine();
+        System.out.println("Escolha qual opçao deseja execultar no estoque: \n(1)Cadastro de Produtos \n(2)Atualizar Produto \n(3)Excluir Produtos \n(4)Exibir Produtos");
+        escolha = ler.nextLine();
         
-        if(escolha == "0"){
-            CadastrarProduto();
-        }else if(escolha == "1"){
-            AtualizarProduto();
-        }else if(escolha == "2"){
-            ExibirProduto();
-        }else if(escolha == "3"){
-            RemoverProduto();
+        switch(escolha){
+            case "1":
+               cadastrarProduto();
+             Fornecedor  fornecedor = new Fornecedor();
+               fornecedor.CadastrarFornecedor();
+               break;
+            case "2":
+               AtualizarProduto();
+               break;
+            case "3":
+               RemoverProduto();
+               break;
+            case "4":
+               ExibirProduto();
+               Fornecedor  fornecedor1 = new Fornecedor();
+               fornecedor1.ExibirFornecedor();
+               break;
+            case "0":
+                    System.out.println("--- Obrigado por utilizar o sistema! ---");
+                    return;
+            default:
+               System.out.println("Opção Não Encontrada!");
         }
     }
- 
-    public String strProdDataCadastro;
-    public int dblProdEstoque;
-    public String strStatusProduto;
-    public String strCategoriaProduto;
+    
+    private void cadastrarProduto() {
+        System.out.println("Informe a Marca do Produto");
+            strMarcaProduto = ler.next();
+        System.out.println("Informe a Descrição do Produto");
+            strDescricaoProduto = ler.next();
+            strStatusProduto = "Disponivel";
+        System.out.println("Informe a Data de Cadastro do Produto(DD/MM/AAAA)");
+            strDataCadastroProduto = ler.next(); 
+        System.out.println("Informe o novo Preço do produto");
+            dblValorVendaProduto = ler.nextDouble();
+        System.out.println("Informe a quantidade do produto");
+            intQuantidadeProduto = ler.nextInt();
+        System.out.println("Informe a quantidade maxima permitida do produto");
+            intQuantidadeMaxProduto = ler.nextInt();
+        System.out.println("Informe o novo Codigo do produto");
+            intIdProduto = ler.nextInt();
+    }
 
-    Scanner ler = new Scanner(System.in);
-    Date dateData = new Date();
+    private void AtualizarProduto() {
+        System.out.println("Informe a nova Quantidade do Produto");
+        int qtdToAdd = ler.nextInt();
+        if (intQuantidadeProduto + qtdToAdd <= intQuantidadeMaxProduto) { 
+            intQuantidadeProduto += qtdToAdd;
+        } else {
+            System.out.println("Não é possível adicionar essa quantidade de produto, pois excede a quantidade máxima permitida.");
+        }
+        System.out.println("Informe a Marca do Produto");
+            strMarcaProduto = ler.next();
+        System.out.println("Informe a Descrição do Produto");
+            strDescricaoProduto = ler.next();
+            strStatusProduto = "Disponivel";
+        System.out.println("Informe a Data de Cadastro do Produto(DD/MM/AAAA)");
+            strDataCadastroProduto = ler.next(); 
+        System.out.println("Informe o novo Preço do produto");
+            dblValorVendaProduto = ler.nextDouble();
+        System.out.println("Informe o novo Codigo do produto");
+            intIdProduto = ler.nextInt();
+    }
 
-    public void RemoverProduto() {
-         System.out.println("Informe a quantidade para ser removida");
+    private void RemoverProduto() {
+        System.out.println("Informe a quantidade para ser removida");
         int quantidade= ler.nextInt();
         if (this.strStatusProduto.equalsIgnoreCase("disponivel")) {
-            if (this.dblProdEstoque >= quantidade) {
-                this.dblProdEstoque -= quantidade;
+            if (this.intQuantidadeProduto >= quantidade) {
+                this.intQuantidadeProduto -= quantidade;
             } else {
                 System.out.println("Não há estoque suficiente disponível");
             }
@@ -52,62 +94,14 @@ public class Estoque extends Produto  {
             System.out.println("O produto encontra-se indisponivel para remoção.");
         }
     }
-    
-    public void CadastrarProduto() {
-        System.out.println("Informe a descrição do produto");
-        strProdDescricao = ler.next();
-        System.out.println("Informe o novo Codigo do produto");
-        intProdId = ler.nextInt();
-        System.out.println("Informe o novo Preço do produto");
-        dblProdValorVenda = ler.nextDouble();
-        System.out.println("Informe o novo Fornecedor");
-        strProdFornecedor = ler.next();
-        System.out.println("Informe a nova Data de Cadastro do Produto");
-        strProdDataCadastro = ler.next();
-         System.out.println("Informe a quantidade do Produto: ");
-        dblProdEstoque = ler.nextInt();
-        System.out.println("Informe a quantidade Maxima que o estoque armazena do Produto: ");
-        intQuantidadeMaximaProduto = ler.nextInt();
-        System.out.println("Informe a nova Categoria do Produto");
-        strCategoriaProduto = ler.next();
-        System.out.println("Novo Status do Produto");
-        strStatusProduto = ler.next();
-    }
-
-    public void AtualizarProduto() {
-        System.out.println("Informe a descrição do produto");
-        strProdDescricao = ler.next();
-        System.out.println("Informe o novo Codigo do produto");
-        intProdId = ler.nextInt();
-        System.out.println("Informe o novo Preço do produto");
-        dblProdValorVenda = ler.nextDouble();
-        System.out.println("Informe o novo Fornecedor");
-        strProdFornecedor = ler.next();
-        System.out.println("Informe a nova Data de Cadastro do Produto");
-        strProdDataCadastro = ler.next();
-        System.out.println("Informe a nova Quantidade do Produto");
-        int qtdToAdd = ler.nextInt();
         
-        if (dblProdEstoque + qtdToAdd <= intQuantidadeMaximaProduto) { 
-            dblProdEstoque += qtdToAdd;
-        } else {
-            System.out.println("Não é possível adicionar essa quantidade de produto, pois excede a quantidade máxima permitida.");
-        }
-        
-        System.out.println("Informe a nova Categoria do Produto");
-        strCategoriaProduto = ler.next();
-        System.out.println("Novo Status do Produto");
-        strStatusProduto = ler.next();
-    }
-
-    public void ExibirProduto() {
+    private void ExibirProduto() {
         if (strStatusProduto.equalsIgnoreCase("disponível")) {
             int intExibir;
-            intExibir = intProdId;
-            if (intExibir == intProdId) {
-                System.out.println("Nome Produto: " + strProdDescricao + " Preço do Produto: " + dblProdValorVenda + " Fornecedor: "
-                        + strProdFornecedor + " Validade do Produto: " + strProdDataCadastro + " Quantidade: " + dblProdEstoque + " Categoria: "
-                        + strCategoriaProduto + " Data de Entrega: " + strProdDataCadastro);
+            intExibir = intIdProduto;
+            if (intExibir == intIdProduto) {
+                System.out.println("Descrição do Produto: " + strDescricaoProduto +" Marca do Produto: "+strMarcaProduto+" Data de Cadastro do Produto: "+strDataCadastroProduto
+                        +" Quantidade Disponivel de Produto: "+intQuantidadeProduto+" Valor do Produto: R$"+dblValorVendaProduto);
             }
         } else {
             System.out.println("Produto Indisponivel");
@@ -115,19 +109,11 @@ public class Estoque extends Produto  {
             String escolha;
             escolha = ler.nextLine();
             if(escolha == "0"){
-                CadastrarProduto();
+                cadastrarProduto();
             }else{
-                System.out.println("Aq chama o menu");
+                System.out.println("---Obrigado Por Utilizar---");
             }
         }
-    }
+    }    
     
-    public void setCodProduto(int CodProd) {
-        this.intProdId = CodProd;
-    }
-    
-    public int getCodProduto() {
-        return intProdId;
-    }
-
 }
