@@ -37,6 +37,7 @@ public class ContasaReceber extends Conta {
         strTelefoneCliente = ler.nextLine();
         chama.contas();
     }
+    @Override
     public void mostrar(){
         System.out.println("Nome:"+strNomeCliente);
         System.out.println("Endereço"+strEndereco);
