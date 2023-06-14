@@ -1,7 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+/**
+ *
+ * @author adrian
  */
+
 package sistemadebar.cyberbar;
 
 import java.util.Scanner;
@@ -14,16 +15,38 @@ public class CadastroProduto extends Cadastro{
     public String strProdDataCadastro;
     public String strProdDataAtualizacao;
     
-    public void Cadastrar(int pId, String pNome, double pQuantidade,String pMarca, String pFornec, double pProdValCusto, double pProdValVenda, String pProdDataCadastro, String pProdDataAtual) {
-        super.Cadastrar(pId, pNome, pQuantidade);
+    public CadastroProduto(int pIdCadastro, String pDescricao, double pQuantidade,String pMarca, String pFornec, double pProdValCusto, double pProdValVenda, String pProdDataCadastro, String pProdDataAtt) {
+        super(pIdCadastro, pDescricao, pQuantidade);
         this.dblProdValorCusto = pProdValCusto;
         this.dblProdValorVenda = pProdValVenda;
         this.strProdMarca = pMarca;
-        this.strProdDataAtualizacao = pProdDataAtual;
+        this.strProdDataAtualizacao = pProdDataAtt;
         this.strProdFornecedor = pFornec;
         this.strProdDataCadastro = pProdDataCadastro; 
     
     }       
+
+    public void setstrProdMarca(String pProdMarca){
+        this.strProdMarca = pProdMarca;
+    }
+    public void setstrProdFornecedor(String pFornec){
+        this.strProdFornecedor = pFornec;
+    }
+    public void setdblProdValorCusto(double pProValorCusto){
+        this.dblProdValorCusto = pProValorCusto;
+    }
+    public void setdblProdValorVenda(double pProdValVenda){
+        this.dblProdValorVenda = pProdValVenda;
+    }
+    public void setstrProdDataCadastro(String pProdDataCadastr){
+        this.strProdDataCadastro = pProdDataCadastr;
+    }
+    public void setstrProdDataAtualizacaoe(String pProdDataAtt){
+        this.strProdDataAtualizacao = pProdDataAtt;
+    }
+    
+    
+    
     Scanner ler = new Scanner(System.in);
     public void CadastroProduto(){
     System.out.println("------------------------------\n");
