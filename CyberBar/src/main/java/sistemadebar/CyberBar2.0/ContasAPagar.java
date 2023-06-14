@@ -41,7 +41,11 @@ public class ContasAPagar extends Conta {
         dblSalarioFuncionario = ler.nextDouble();
         chama.contas();
     }
-
+    public void mostrar(){
+        System.out.println("Nome:"+strNomeFuncionario);
+        System.out.println("Endereço"+strCargo);
+        System.out.println("Telefone:"+dblSalario);
+    }
     public String getFornecedor() {
         return fornecedor;
     }
