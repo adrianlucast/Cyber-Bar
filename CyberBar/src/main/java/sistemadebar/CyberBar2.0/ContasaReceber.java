@@ -37,7 +37,11 @@ public class ContasaReceber extends Conta {
         strTelefoneCliente = ler.nextLine();
         chama.contas();
     }
-
+    public void mostrar(){
+        System.out.println("Nome:"+strNomeCliente);
+        System.out.println("Endereço"+strEndereco);
+        System.out.println("Telefone:"+strTelefone);
+    }
     public String getCliente() {
         return cliente;
     }
