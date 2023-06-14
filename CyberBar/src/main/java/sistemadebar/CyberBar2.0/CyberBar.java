@@ -13,36 +13,36 @@ public class CyberBar {
             System.out.println("------------------------------------------------");
             System.out.print(  "             Bem-vindo ao Cyber Bar             ");
             System.out.println("\n----------------------------------------------");
-            System.out.println("(0)Contas\n(1)\n(2)\n(3)\n(4\n(5)\n(6)Sair");
+            System.out.println("(0)Contas\n(1)Cadastro\n(2)Estoque\n(3)Vendas\n(4)Fornecedor\n(5)Sair");
             System.out.println("------------------------------------------------");
             menu = ler.next();
             
             switch (menu) {
                 case "0":
-                    System.out.println("Voce escolheu ");
+                    System.out.println("Voce escolheu Contas ");
                     chamadas.contas();
                     i=99;
                     break;
                 case "1":
-                    System.out.println("Voce escolheu !");
+                    System.out.println("Voce escolheu Cadastro !");
+                    chamadas.cadastro();
                     break;
                 case "2":
-                    System.out.println("Voce escolheu ");
+                    System.out.println("Voce escolheu Estoque ");
+                    chamadas.estoque();
                     break;
                 case "3":
-                    System.out.println("Voce escolheu ");
+                    System.out.println("Voce escolheu Vendas  ");
+                    chamadas.vendas();
                     i=99;
                     break;
                 case "4":
-                    System.out.println("Voce escolheu ");
+                    System.out.println("Voce escolheu Fornecedor ");
+                    chamadas.fornecedor();
                     i=99;
                     break;
                 case "5":
-                    System.out.println("Voce escolheu ");
-                    i=99;
-                    break;
-                case "6":
-                    System.out.println("Sair");
+                    System.out.println("Voce escolheu Sair ");
                     i=99;
                     break;
                 default:
