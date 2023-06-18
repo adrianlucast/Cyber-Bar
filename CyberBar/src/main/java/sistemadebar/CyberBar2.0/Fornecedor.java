@@ -1,37 +1,32 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package sistemadebar.cyberbar;
 
 import java.util.Scanner;
 
 /**
- *
- * @author Usuario
+ * @Desenvolvedor: Gabriella Cristini Galvão
  */
 public class Fornecedor {
     protected String strFornecedor;
     protected String strDataEntrega;
-    protected int    intIdFornecedor;
-    protected static int proximoID =1;
-    
-Scanner scan = new Scanner(System.in);
+    protected int intIdFornecedor;
+    protected static int proximoID = 1;
 
-    public void CadastrarFornecedor(){
+    Scanner scan = new Scanner(System.in);
+
+    public void CadastrarFornecedor() {
         this.intIdFornecedor = proximoID;
         proximoID++;
         System.out.println("Informe o Fornecedor do Produto");
-            strFornecedor = scan.next();
+        strFornecedor = scan.next();
         System.out.println("Informe a Data de Entrega");
-            strDataEntrega = scan.next();
+        strDataEntrega = scan.next();
     }
-        
-    public void ExibirFornecedor() {
-                System.out.println("Fornecedor do Produto: " + strFornecedor +" Data de Entrega: "+strDataEntrega+" ID do Fornecedor: "+intIdFornecedor);
-            }
 
-    
+    public void ExibirFornecedor() {
+        System.out.println("Fornecedor do Produto: " + strFornecedor + " Data de Entrega: " + strDataEntrega
+                + " ID do Fornecedor: " + intIdFornecedor);
+    }
+
     public String getStrFornecedor() {
         return strFornecedor;
     }

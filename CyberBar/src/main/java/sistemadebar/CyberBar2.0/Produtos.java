@@ -1,22 +1,18 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package sistemadebar.cyberbar;
 
 /**
- * @Desenvolvedor:  Gabriella Cristini Galvão;
+ * @Desenvolvedor: Gabriella Cristini Galvão;
  */
-public class Produtos extends Fornecedor{
+public class Produtos extends Fornecedor {
     protected String strMarcaProduto;
     protected String strDescricaoProduto;
     protected String strStatusProduto;
     protected String strDataCadastroProduto;
     protected double dblValorVendaProduto;
-    protected int    intQuantidadeProduto;
-    protected int    intQuantidadeMaxProduto;
-    protected int    intIdProduto;
-    
+    protected int intQuantidadeProduto;
+    protected int intQuantidadeMaxProduto;
+    protected int intIdProduto;
+
     public String getStrMarcaProduto() {
         return strMarcaProduto;
     }
@@ -72,7 +68,7 @@ public class Produtos extends Fornecedor{
     public void setIntQuantidadeMaxProduto(int intQuantidadeMaxProduto) {
         this.intQuantidadeMaxProduto = intQuantidadeMaxProduto;
     }
-    
+
     public int getIntIdProduto() {
         return intIdProduto;
     }
@@ -80,6 +76,5 @@ public class Produtos extends Fornecedor{
     public void setIntIdProduto(int intIdProduto) {
         this.intIdProduto = intIdProduto;
     }
-    
-    
+
 }
