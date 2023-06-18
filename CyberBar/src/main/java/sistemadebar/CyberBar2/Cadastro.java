@@ -13,7 +13,7 @@ public class Cadastro {
     protected String strNome;
     protected double dblQuantidade;
     
-    public void Cadastrar(int pId,String pNome,double pQuantidade){
+    public Cadastro(int pId,String pNome,double pQuantidade){
         this.intId = pId;
         this.dblQuantidade = pQuantidade;
         this.strNome = pNome;
