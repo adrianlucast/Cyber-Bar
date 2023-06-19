@@ -1,0 +1,2 @@
+-- min 1 classe por membro -- min 10 atrubutos por class -- min 3 metodos por class
+sistema de bar
