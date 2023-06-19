@@ -15,12 +15,12 @@ public class Vendas {
     protected String strMarcaProduto;
     protected String StrcpfCliente;
     protected String StrformaPagamento;
-    protected Date DatedateVenda;
     protected int intIdVenda;
     protected int intQuantidade;
     protected int intparcela;
     protected double dblValorVendaProduto;
     protected List<Vendas> listavendas = new ArrayList<>();
+    Date DatedateVenda = new Date();
 
     public void vendas(int intIdVenda, String StrcpfCliente, String StrformaPagamento,
             String strDescricaoVenda, String strMarcaProduto, int intparcela, double dblValorVendaProduto) {
@@ -51,6 +51,7 @@ public class Vendas {
         dblValorVendaProduto = ler.nextDouble();
         System.out.println("Forma de Pagamento Utilizada: ");
         StrformaPagamento = ler.next();
+        System.out.println("Data da Venda: " + DatedateVenda);
         listavendas.add(this);
     }
 
@@ -65,6 +66,13 @@ public class Vendas {
             } else {
                 System.out.println("Venda não Encontrada Verifique se o Id Informado está Correto");
             }
+        }
+    }
+
+    public void ExibirVenda() {
+        System.out.println("Estas são suas Vendas!: ");
+        for (Vendas venda : listavendas) {
+            System.out.println(venda);
         }
     }
 

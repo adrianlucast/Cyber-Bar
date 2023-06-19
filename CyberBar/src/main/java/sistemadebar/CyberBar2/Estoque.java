@@ -1,5 +1,7 @@
 package sistemadebar.CyberBar2;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -7,39 +9,9 @@ import java.util.Scanner;
  */
 public class Estoque extends Produtos {
     Scanner ler = new Scanner(System.in);
+    protected List<Estoque> listaestoque = new ArrayList<>();
 
-    public void menuEstoque() {
-        String escolha;
-        System.out.println(
-                "Escolha qual opçao deseja execultar no estoque: \n(1)Cadastro de Produtos \n(2)Atualizar Produto \n(3)Excluir Produtos \n(4)Exibir Produtos");
-        escolha = ler.nextLine();
-
-        switch (escolha) {
-            case "1":
-                cadastrarProduto();
-                Fornecedor fornecedor = new Fornecedor();
-                fornecedor.CadastrarFornecedor();
-                break;
-            case "2":
-                AtualizarProduto();
-                break;
-            case "3":
-                RemoverProduto();
-                break;
-            case "4":
-                ExibirProduto();
-                Fornecedor fornecedor1 = new Fornecedor();
-                fornecedor1.ExibirFornecedor();
-                break;
-            case "0":
-                System.out.println("--- Obrigado por utilizar o sistema! ---");
-                return;
-            default:
-                System.out.println("Opção Não Encontrada!");
-        }
-    }
-
-    private void cadastrarProduto() {
+    protected void cadastrarProduto() {
         System.out.println("Informe a Marca do Produto");
         strMarcaProduto = ler.next();
         System.out.println("Informe a Descrição do Produto");
@@ -55,9 +27,10 @@ public class Estoque extends Produtos {
         intQuantidadeMaxProduto = ler.nextInt();
         System.out.println("Informe o novo Codigo do produto");
         intIdProduto = ler.nextInt();
+        listaestoque.add(this);
     }
 
-    private void AtualizarProduto() {
+    protected void AtualizarProduto() {
         System.out.println("Informe a nova Quantidade do Produto");
         int qtdToAdd = ler.nextInt();
         if (intQuantidadeProduto + qtdToAdd <= intQuantidadeMaxProduto) {
@@ -79,21 +52,23 @@ public class Estoque extends Produtos {
         intIdProduto = ler.nextInt();
     }
 
-    private void RemoverProduto() {
+    protected void RemoverProduto() {
         System.out.println("Informe a quantidade para ser removida");
         int quantidade = ler.nextInt();
-        if (this.strStatusProduto.equalsIgnoreCase("disponivel")) {
-            if (this.intQuantidadeProduto >= quantidade) {
-                this.intQuantidadeProduto -= quantidade;
+        for (Estoque produto : listaestoque) {
+            if (this.strStatusProduto.equalsIgnoreCase("disponivel")) {
+                if (this.intQuantidadeProduto >= quantidade) {
+                    listaestoque.remove(produto);
+                } else {
+                    System.out.println("Não há estoque suficiente disponível");
+                }
             } else {
-                System.out.println("Não há estoque suficiente disponível");
+                System.out.println("O produto encontra-se indisponivel para remoção.");
             }
-        } else {
-            System.out.println("O produto encontra-se indisponivel para remoção.");
         }
     }
 
-    private void ExibirProduto() {
+    protected void ExibirProduto() {
         if (strStatusProduto.equalsIgnoreCase("disponível")) {
             int intExibir;
             intExibir = intIdProduto;
@@ -115,5 +90,4 @@ public class Estoque extends Produtos {
             }
         }
     }
-
 }

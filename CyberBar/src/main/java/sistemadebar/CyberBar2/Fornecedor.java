@@ -18,7 +18,7 @@ public class Fornecedor {
         proximoID++;
         System.out.println("Informe o Fornecedor do Produto");
         strFornecedor = scan.next();
-        System.out.println("Informe a Data de Entrega");
+        System.out.println("Informe a Data de Entrega(DD/MM/AAAA)");
         strDataEntrega = scan.next();
     }
 
