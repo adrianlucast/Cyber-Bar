@@ -1,6 +1,7 @@
 
 package sistemadebar.CyberBar2;
 import java.util.*;
+import sistemadebar.cyberbar.Chamadas;
 
 public class ContasaReceber extends Conta {
     Scanner ler = new Scanner(System.in);
@@ -40,8 +41,8 @@ public class ContasaReceber extends Conta {
     
     public void mostrar(){
         System.out.println("Nome:"+strNomeCliente);
-        System.out.println("Endereço"+strEndereco);
-        System.out.println("Telefone:"+strTelefone);
+        System.out.println("Endereço"+strEnderecoCliente);
+        System.out.println("Telefone:"+strTelefoneCliente);
     }
     public String getCliente() {
         return cliente;

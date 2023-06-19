@@ -2,6 +2,7 @@ package sistemadebar.CyberBar2;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import sistemadebar.cyberbar.Chamadas;
 
 
 public class ContasAPagar extends Conta {
@@ -44,8 +45,8 @@ public class ContasAPagar extends Conta {
     
     public void mostrar(){
         System.out.println("Nome:"+strNomeFuncionario);
-        System.out.println("Endereço"+strCargo);
-        System.out.println("Telefone:"+dblSalario);
+        System.out.println("Endereço"+strCargoFuncionario);
+        System.out.println("Telefone:"+dblSalarioFuncionario);
     }
     public String getFornecedor() {
         return fornecedor;
